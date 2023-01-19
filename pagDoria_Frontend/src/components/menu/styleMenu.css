@@ -1,0 +1,333 @@
+:root {
+    --main-color: #3d5794;
+    --main-color-dark: #354b80;
+    --main-color-light: #5872f5;
+    --color-dark: #0a1057;
+    --text-color: #cfcde7;
+    --image-menu: url(C:\Users\ncdrsoporing\Documents\pagDoria\pagDoria_Frontend\public\assets\background\img-menu.png);
+}
+
+body {
+    position: relative;
+}
+
+.main-menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2rem;
+    color: #1f2027;
+}
+
+main h1 {
+    margin-bottom: 1rem;
+}
+
+.content-page {
+    display: flex;
+    position: sticky;
+}
+
+.nav-menu {
+    width: 19rem;
+    height: 1.%;
+    padding: 1.8rem .85rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    color: aliceblue;
+    background-image: var(--image-menu);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size: cover;    
+    display: flex;
+    flex-direction: column;
+    transition: width .5s ease-in-out;
+    border-radius: 0px 80px 80px 0px
+}
+
+nav::before {
+    content: "";
+    position: absolute;
+    width: 2rem;
+    height: 100%;
+    top: 0;
+    left: 100%;
+}
+
+.chevron-left {
+    width: 20px;
+}
+
+.sidebar-top .logo {
+    width: 5rem;
+    margin: 0 1.5rem;
+}
+
+.sidebar-top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+.sidebar-top h3 {
+    padding-left: .5rem;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.shrink-btn {
+    position: absolute;
+    top: 50%;
+    height: 27px;
+    padding: 0 .3rem;
+    background-color: var(--main-color);
+    border-radius: 6px;
+    right: -3rem;
+    cursor: pointer;
+    box-shadow: 0 3px 10px -3px rgba(70, 46, 118, 0.3);
+    transform: translateY(-50%) translateX(-8px);
+    opacity: 0;
+    pointer-events: none;
+    padding: 3px;
+    transition: .5s ease;
+}
+
+.shrink-btn img {
+    line-height: 27px;
+    transition: .5s;
+}
+
+.shrink-btn:hover {
+    background-color: var(--main-color-dark);
+}
+
+nav:hover .shrink-btn, .shrink-btn.hovered {
+    transform: translateY(-50%) translateX(0px);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.sidebar-links {
+    padding-top: 50px;
+}
+
+.sidebar-links li {
+    padding: 15px 0;
+}
+
+.sidebar-links div {
+    color: var(--text-color);
+    font-weight: 400;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    height: 53px;
+}
+
+.inactiveItem:hover{
+    color: #fff;
+    filter: drop-shadow(2px 2px 2px rgb(10, 16, 87));
+}
+
+.sidebar-links div .link {
+    transition: opacity .3s .2s color .3s;
+}
+
+.sidebar-links ul {
+    position: relative;
+}
+
+.sidebar-links li {
+    position: relative;
+    padding: 14px 0;
+}
+
+.sidebar-links li span:hover{
+    color: #fff;
+}
+
+.sidebar-links-lines {
+    line-height : 18px;
+}
+
+.user-rol {
+    display: flex;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.userRolCircle {
+    background-color: rgb(16, 32, 78);
+    border-radius: 50%;
+    margin: 0 1rem;
+}
+
+.user-profile {
+    white-space: nowrap;
+    max-width: 100%;
+    transition: opacity .3s .2s, max-width .7s 0s ease-in-out;
+    display: flex;
+    align-items: center;
+    padding-left: 23px;
+    overflow: hidden;
+}
+
+.user-info {
+    padding-left: .3rem;
+    padding-right: 1.5rem;
+}
+
+.user-info h3 {
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.user-info h5 {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--color-dark);
+    margin-top: 0.3rem;
+    display: flex;
+    line-height: 1;
+}
+
+.log-out {
+    display: flex;
+    height: 45px;
+    min-width: 2.4rem;
+    background-color: #0a1057;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    margin: 0 1.2rem;
+    cursor: pointer;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+}
+
+.acoount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 53px;
+    width: 3.7rem;
+    transition: opacity .3s 0s, color .3s 0s;
+    padding-left: 62px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.acoount:hover {
+    filter: drop-shadow(2px 2px 2px var(--color-dark));
+}
+
+.activeItem {
+    background-color: var(--color-dark);
+    border-radius: 10px;
+}
+
+.icon {
+    justify-items: center;
+    min-width: 7rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    padding-left: 44px;
+}
+
+.icon img {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    transition: .3s;
+    position: absolute;
+}
+
+.inactiveItem {
+    cursor: pointer;
+}
+
+.inactiveItem .icon img:first-child {
+    opacity: 1;
+}
+
+.inactiveItem .icon img:last-child {
+    opacity: 0;
+}
+
+.activeItem .icon img:last-child {
+    opacity: 1;
+}
+
+.activeItem .icon img:first-child {
+    opacity: 0;
+}
+
+.hide {
+    transition: opacity .3s .2s;
+}
+
+.tooltip {
+    display: none;
+}
+
+body.shrink .tooltip {
+    display: block;
+}
+
+body.shrink .hide {
+    opacity: 0;
+    pointer-events: none;
+    transition-delay: 0s;
+}
+
+body.shrink nav {
+    width: 10rem;
+}
+
+body.shrink .shrink-btn img {
+    transform: rotate(-180deg);
+}
+
+body.shrink .acoount {
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity .3 .3s, color .3s 0s;
+}
+
+body.shrink .user-profile {
+    max-width: 0;
+    transition: opacity .3s 0s, max-width .7s 0s ease-in-out;
+}
+
+body.shrink {
+    display: grid;
+}
+
+.ul-menu {
+    list-style: none;
+    display: block;
+}
+
+
+/*Medidas de iconos del menu*/
+.width-excel {
+    width: 35px;
+}
+
+.width-authorize {
+    width: 40px;
+}
+
+.width-userRol, .userRolCircle, .width-get, .width-users, .width-view {
+    width: 45px;
+}
+
+.width-logout {
+    width: 34px;
+}

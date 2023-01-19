@@ -1,0 +1,259 @@
+.main-bosses-user {
+    margin: 30px;
+    margin-right: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-cards-users {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: -40px;
+}
+
+.card-user {
+    background-color: aliceblue;
+    margin: 20px;
+    width: 330px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-user hr {
+    height: 30px;
+    margin: 15px;
+    border: 10px;
+    background-color: black;
+    width: 1px;
+}
+
+.inf-personal {
+    text-align: center;
+}
+
+.card-buttons-user {
+    background-color: #0a105738;
+    width: 330px;
+    border-radius: 0px 0px 10px 10px;
+    display: flex;
+    justify-content: space-evenly;
+    height: 30px;
+}
+
+.card-buttons-user button {
+    border: none;
+    background-color: transparent;
+}
+
+.card-buttons-user img {
+    width: 30px;
+    cursor: pointer;
+}
+
+.inf-user {
+    display: flex;
+    align-items: center;
+}
+
+.header-users {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.search-users button img {
+    width: 50px;
+    border-radius: 100%;
+    margin-right: 20px;
+}
+
+.search-users {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.search-users input {
+    height: 35px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-weight: 300;
+    padding-left: 20px;
+}
+
+.search-users img {
+    width:  70px;
+    cursor: pointer;
+}
+
+.search-users button {
+    border: none;
+    background-color: transparent;
+}
+
+.search-filter {
+    display: flex;
+    align-items: center;
+}
+
+.select-wrap[name="users"] {
+    padding-bottom: 30px;
+    margin-right: -7px;
+}
+
+.select-wrap[name="users"] select {
+    padding: 10px;
+    width: 100px;
+    height: 40px;
+    border-radius: 12px 0px 0px 11px;
+}
+
+
+.button-add-user {
+    padding: 5px;
+    padding-right: 15px;
+    color: aliceblue;
+    background-color: #3f51b5;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.button-add-user:hover {
+    transition: .2s;
+    background-color: #33449b;
+}
+
+.button-add-user img {
+    width: 40px;
+    margin: 2px;
+    margin-right: 20px;
+}
+
+.modal {
+    position: absolute;
+    width: 400px;
+    background-color: white;
+    border-radius: 2px;
+    padding: 16px 32px 24px; 
+    border-radius: 25px 25px 20px 20px;
+    top: 15%;
+    left: 39%;
+}
+
+.modal-title {
+    background-color: #3f51b5;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: -16px -32px 0px;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.modal-title[name="delete"] {
+    background-color: #b53f3f;
+}
+
+.modal-title[name="edit"] {
+    background-color: #b59a3f;
+}
+
+.modal-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 35px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 20px;
+}
+
+.select-field {
+    margin-bottom: 0px;
+}
+
+.message-bad hr {
+    width: 300px;
+    margin-bottom: 20px;
+    border: 1px solid #e5554e;
+}
+
+.rol-name {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+ul[name="card-user"] {
+    display: flex;
+    transform: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    flex-direction: row;
+}
+
+.pModalDelete {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.content-pagination {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    align-items: center;
+}
+
+.pagination-text {
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.buttons-pagination {
+    transform: skew(0deg, -13deg);
+    margin: 10px;
+    height: 40px;
+    width: 100px;
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.623);
+    font-size: 30px;
+    border-radius: 5px;
+    border: 0px;
+    margin-top: 10px;
+}
+
+.buttons-pagination:hover {
+    color: rgba(0, 0, 0, 0.432);
+    cursor: pointer;
+}
+
+.buttons-pagination:hover[name='previous'] {
+    transition: 0.4s ease-in-out all;
+    position: relative;
+    right: 3px;
+}
+
+.buttons-pagination:hover[name='next'] {
+    transition: 0.4s ease-in-out all;
+    position: relative;
+    left: 3px;
+}

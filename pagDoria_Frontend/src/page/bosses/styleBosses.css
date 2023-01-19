@@ -1,0 +1,12 @@
+body {
+    background-image: url(C:\Users\ncdrsoporing\Documents\pagDoria\pagDoria_Frontend\public\assets\background\backgroundpaginitial.png);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Poppins";
+    position: relative;
+}
+

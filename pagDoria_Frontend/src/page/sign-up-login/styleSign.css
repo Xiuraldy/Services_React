@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.bodySign {
+    background-image: url(C:\Users\ncdrsoporing\Documents\pagDoria\pagDoria_Frontend\public\assets\background\background-pc.png);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "Poppins";
+}
+
+input {
+    font-family: "Poppins";
+}
+
+main {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    position: relative;
+    width: 100%;
+    max-width: 1020px;
+    height: 680px;
+    background-color: #fff;
+    border-radius: 3.3rem;
+    box-shadow: 0px 60px 40px -30px rgba(0, 0, 0, 0.27);
+}
+
+.inner-box {
+    position: absolute;
+    width: calc(100% - 4.1rem);
+    height: calc(100% - 4.1rem);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.forms-wrap {
+    position: absolute;
+    height: 100%;
+    width: 45%;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    transition: .8s ease-in-out;
+}
+
+.img-doria {
+    position: absolute;
+    height: 100%;
+    width: 55%;
+    left: 45%;
+    top: 0;
+    background-color: #334d8a;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size: cover;
+    border-radius: 2rem;
+    transition: .8s ease-in-out;
+}
+
+.sign-in, .sign-up {
+    max-width: 260px;
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    transition: opacity .02s .4s;
+}
+
+div.sign-up {
+    opacity: 0;
+    pointer-events: none;
+}
+
+span.toggle {
+    cursor: pointer;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 65px;
+    margin-right: 0.3rem;
+}
+
+.logo h4 {
+    font-size: 1.1rem;
+    margin-top: -9px;
+    letter-spacing: -0.5px;
+    color: #151111;
+}
+
+.heading h2 {
+    font-size: 2.1rem;
+    font-weight: 600;
+    color: #151111;
+}
+
+.heading h6 {
+    color: #bababa;
+    font-weight: 400;
+    font-size: .75rem;
+    display: inline;
+}
+
+.toggle {
+    color: #151111;
+    text-decoration: none;
+    font-size:  .75rem;
+    font-weight: 500;
+    transition: .3s;
+}
+
+.toggle:hover {
+    color: #8371fd;
+}
+
+.input-wrap {
+    position: relative;
+    height: 37px;
+    margin-bottom: 2rem;
+}
+
+.input-wrap[name="name"] {
+    margin-left: 10px;
+}
+
+.input-field {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #bbb;
+    padding: 0;
+    font-size: .95rem;
+    color: #151111;
+    transition: .4s;
+}
+
+.input-field[name="name"] {
+    width: 168px;
+}
+
+.rolName {
+    display: flex;
+}
+
+.message-bad {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: margin-right 2s;
+}
+
+.message-bad img{
+    width: 30px;
+    
+}
+
+.select-field {
+    margin-bottom: 30px;
+}
+
+.select-wrap select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+.select-wrap select::-ms-expand {
+    display: none;
+}
+
+.select-wrap{
+	position: relative;
+}
+ 
+.select-wrap select{
+	display: inline-block;
+	width: 100%;
+	cursor: pointer;
+  	padding: 7px 10px;
+  	outline: 0; 
+  	border: 0;
+	border-radius: 0;
+	background: #f0f0f0;
+	color: #7b7b7b;
+	font-size: 1em;
+	color: #999;
+	font-family: 
+	'Quicksand', sans-serif;
+	border:2px solid rgba(27, 27, 27, 0.2);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.25s ease;
+}
+ 
+.select-wrap select:hover{
+	background: #232425;
+}
+
+.select-wrap i{
+	position: absolute;
+	right: 20px;
+	top: calc(50% - 13px);
+	width: 16px;
+	height: 16px;
+	display: block;
+	border-left:4px solid #1f2022;
+	border-bottom:4px solid #262729;
+	transform: rotate(-45deg); /* Giramos el cuadrado */
+	transition: all 0.25s ease;
+}
+ 
+.select-wrap:hover i{
+	margin-top: 3px;
+}
+
+label {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: .95rem;
+    color: #bbb;
+    pointer-events: none;
+    transition:  .4s;
+}
+
+.input-field.active {
+    border-bottom-color: #151111;
+}
+
+.input-field.active + label {
+    font-size: .75rem;
+    top: -2px;
+}
+
+.button-send {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .1s;
+    background-color: #dbba74;
+    color: #000000;
+    box-shadow: 0 5px #645135;
+    transform: translateY(3px);
+}
+
+.button-send:hover {
+    background-color: #bb9863;
+} 
+
+.button-send:active {
+    box-shadow: 0 1px #645135;
+    transform: translateY(6px);
+}
+
+main.sign-up-mode .sign-in {
+    opacity: 0;
+    pointer-events: none;
+    
+}
+
+main.sign-up-mode .sign-up {
+    opacity: 1;
+    pointer-events: all;
+}
+
+main.sign-up-mode .forms-wrap {
+    left: 55%;
+}
+
+main.sign-up-mode .img-doria {
+    left: 0%;
+}
+
+/*Responsive*/
+
+@media screen and (max-width: 850px) {
+    .bodySign {
+        background-image: url(C:\Users\ncdrsoporing\Documents\pagDoria\pagDoria_Frontend\public\assets\background\background850.png);
+    }
+
+    .box {
+      height: auto;
+      max-width: 550px;
+      overflow: hidden;
+    }
+  
+    .inner-box {
+      position: static;
+      transform: none;
+      width: revert;
+      height: revert;
+      padding: 2rem;
+    }
+
+    .input-field[name="name"] {
+        width: 19.5rem;
+    }
+  
+    .forms-wrap {
+      position: revert;
+      width: 100%;
+      height: auto;
+    }
+  
+    div.sign-in, div.sign-up {
+      max-width: revert;
+      padding: 1.5rem 2.5rem 2rem;
+      transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+    }
+  
+    .heading {
+      margin: 2rem 0;
+    }
+  
+    div.sign-up {
+      transform: translateX(100%);
+    }
+  
+    main.sign-up-mode div.sign-in {
+      transform: translateX(-100%);
+    }
+  
+    main.sign-up-mode div.sign-up {
+      transform: translateX(0%);
+    }
+  
+    .img-doria {
+      display: none;
+    }
+  }
+  
+  @media screen and (max-width: 530px) {
+    main {
+      padding: 1rem;
+    }
+  
+    .box {
+      border-radius: 2rem;
+    }
+
+    .input-field[name="name"] {
+        width: 15rem;
+    }
+
+    .inner-box {
+      padding: 1rem;
+    }
+  
+    form {
+      padding: 1rem 2rem 1.5rem;
+    }
+  }
+
+@media screen and (max-width: 450px) {
+    .bodySign {
+        background-image: url(C:\Users\ncdrsoporing\Documents\pagDoria\pagDoria_Frontend\public\assets\background\background-cel.png);
+    }
+}
+
+@media screen and (max-width: 422px) {
+    .input-field[name="name"] {
+        width: 11.6rem;
+    }
+}
