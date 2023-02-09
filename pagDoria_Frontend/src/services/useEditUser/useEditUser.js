@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { REACT_APP_API_URL } from "../../utils/constanst";
 import { validatorEmail } from "../../utils/validatorEmail";
 
 export const useEditUser = (cb, request) => {
@@ -18,7 +19,7 @@ export const useEditUser = (cb, request) => {
             redirect: 'follow'
           };
           
-          fetch(`${process.env.REACT_APP_API_URL}/api/users/${id}`, requestOptions)
+          fetch(`${REACT_APP_API_URL}/api/users/${id}`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 // console.log('result --->', result)

@@ -1,3 +1,5 @@
+import { REACT_APP_API_URL } from "../../utils/constanst";
+
 export const useDeleteUser = (cb) => {
     function deleteId(id) {
         var requestOptions = {
@@ -5,7 +7,7 @@ export const useDeleteUser = (cb) => {
             redirect: 'follow'
         };
     
-        fetch(`${process.env.REACT_APP_API_URL}/api/users/${id}`, requestOptions)
+        fetch(`${REACT_APP_API_URL}/api/users/${id}`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 if(result.error){

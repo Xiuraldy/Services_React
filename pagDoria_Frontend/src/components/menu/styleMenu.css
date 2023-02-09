@@ -190,9 +190,15 @@ nav:hover .shrink-btn, .shrink-btn.hovered {
     font-weight: 600;
     font-size: 1.2rem;
     color: var(--color-dark);
-    margin-top: 0.3rem;
     display: flex;
     line-height: 1;
+    margin-bottom: 5px;
+}
+
+.user-info h6 {
+    color: var(--color-dark);
+    font-size: .85rem;
+    margin-top: -6px;
 }
 
 .log-out {

@@ -34,7 +34,7 @@ main {
     position: relative;
     width: 100%;
     max-width: 1020px;
-    height: 680px;
+    height: 700px;
     background-color: #fff;
     border-radius: 3.3rem;
     box-shadow: 0px 60px 40px -30px rgba(0, 0, 0, 0.27);
@@ -145,10 +145,6 @@ span.toggle {
     margin-bottom: 2rem;
 }
 
-.input-wrap[name="name"] {
-    margin-left: 10px;
-}
-
 .input-field {
     position: absolute;
     width: 100%;
@@ -161,10 +157,6 @@ span.toggle {
     font-size: .95rem;
     color: #151111;
     transition: .4s;
-}
-
-.input-field[name="name"] {
-    width: 168px;
 }
 
 .rolName {
@@ -188,7 +180,7 @@ span.toggle {
     margin-bottom: 30px;
 }
 
-.select-wrap select{
+.select-wrap select {
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -198,13 +190,13 @@ span.toggle {
     display: none;
 }
 
-.select-wrap{
+.select-wrap {
 	position: relative;
 }
  
-.select-wrap select{
+.select-wrap select {
 	display: inline-block;
-	width: 100%;
+    width: 130px;
 	cursor: pointer;
   	padding: 7px 10px;
   	outline: 0; 
@@ -241,6 +233,15 @@ span.toggle {
  
 .select-wrap:hover i{
 	margin-top: 3px;
+}
+
+.rol-subrol {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.input-wrap[name="name"] {
+    margin-top: 25px;
 }
 
 label {

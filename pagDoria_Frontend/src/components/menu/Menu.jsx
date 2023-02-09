@@ -2,17 +2,20 @@ import { useContext, useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { HtmlTooltip } from '../../elements/TooltipReuse';
 import { GlobalContext } from "../../state/GlobalState"
+import { SUBROL } from "../../utils/constanst";
 import './styleMenu.css' 
 
 export const Menu = () => {
     const navigate = useNavigate()
     const [rol, setRol] = useState('')
+    const [subrol, setSubrol] = useState('')
     const [name, setName] = useState('')
     const {user, setUser} = useContext(GlobalContext)
     const [itemSelected, setItemSelected] = useState('')
     let location = useLocation();
     useEffect(() => {
         setRol(user ? user.rol : '')
+        setSubrol(user ? user.subrol : '')
         setName(user ? user.name : '')
         if(user){
             setItemSelected(location.pathname.split('/')[2])
@@ -37,7 +40,7 @@ export const Menu = () => {
     }
 
     const redirectExcel = () => {
-        window.open("https://docs.google.com/spreadsheets/d/1oWOTBbasKTmX1UYul8zHm0SO5lhnmdvPjaZVfhuwR00/edit#gid=1413542043")
+        window.open("https://docs.google.com/spreadsheets/d/1f0TG7ebAVJnjx2G1W30KPstG6t9OgK896kjZF7pR0ZI/edit#gid=0")
     }
 
     const firstName = (name) => {
@@ -46,6 +49,8 @@ export const Menu = () => {
         const firstName = cutName[0];
         return firstName
     }
+
+    
     
     return (
         rol ? (    
@@ -84,17 +89,6 @@ export const Menu = () => {
                                     </div>
                                 </li>
                                 </HtmlTooltip>
-                                <HtmlTooltip title="Excel" placement="right" arrow className='tooltip'>
-                                <li>
-                                    <div onClick={redirectExcel} className='inactiveItem'>
-                                        <div className="icon">
-                                            <img src="/assets/icon/menu/excel/excel-png.png" alt="excel-png" className="width-excel" />
-                                            <img src="/assets/icon/menu/excel/excel-solid.png" alt="excel-solid" className="width-excel" />
-                                        </div>
-                                        <span className="hide">Excel</span>
-                                    </div>
-                                </li>
-                                </HtmlTooltip>
                                         {
                                             rol==='tech' && (
                                                 <>
@@ -129,6 +123,17 @@ export const Menu = () => {
                                                 </>
                                             ) 
                                         }  
+                                        <HtmlTooltip title="Excel" placement="right" arrow className='tooltip'>
+                                            <li>
+                                                <div onClick={redirectExcel} className='inactiveItem'>
+                                                    <div className="icon">
+                                                        <img src="/assets/icon/menu/excel/excel-png.png" alt="excel-png" className="width-excel" />
+                                                        <img src="/assets/icon/menu/excel/excel-solid.png" alt="excel-solid" className="width-excel" />
+                                                    </div>
+                                                    <span className="sidebar-links-lines hide">Base de <br/>Datos</span>
+                                                </div>
+                                            </li>
+                                        </HtmlTooltip>
                             </ul>
                         </div>
 
@@ -154,22 +159,12 @@ export const Menu = () => {
                             <div className="user-rol">
                                 <div className="user-profile hide">
                                     <img src="/assets/icon/menu/userRol/userRolCircle.png" alt="userRolCircle-png" className="userRolCircle" />
-                                        {
-                                            rol==='tech' && (
-                                                <div className="user-info">
-                                                    <h3>{firstName({name})}</h3>
-                                                    <h5>Técnico</h5> 
-                                                </div>
-                                            )
-                                        }
-                                        {
-                                            rol==='bosses' && (
-                                                <div className="user-info">
-                                                    <h3>{firstName({name})}</h3>
-                                                    <h5>Jefe</h5>
-                                                </div>
-                                            )
-                                        } 
+                                    <div className="user-info">
+                                        <h3>{firstName({name})}</h3>
+                                        {rol==='tech' && <h5>Técnico</h5>}
+                                        {rol==='bosses' && <h5>Jefe</h5>}
+                                        <h6>{SUBROL[user.subrol]}</h6>
+                                    </div>
                                 </div>
                                 <HtmlTooltip title="Salir" placement="right" arrow>
                                     <button className="log-out" onClick={clearLocalStorage}>

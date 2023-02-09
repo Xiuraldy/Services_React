@@ -163,6 +163,16 @@
     border-radius: 20px 20px 0px 0px;
 }
 
+.roles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.roles h5 {
+    margin-top: -10px;
+}
+
 .modal-title[name="delete"] {
     background-color: #b53f3f;
 }

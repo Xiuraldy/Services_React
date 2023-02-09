@@ -1,0 +1,508 @@
+:root {
+    --red-dark: #B42C44;
+    --red-light: #EFBEBE;
+    --green-dark: #30702F;
+    --green-light: #BFEFBE;
+    --blue-dark: #2F3B70;
+    --blue-light: #BEE9EF;
+    --yellow-dark: #AD8200;
+    --yellow-light: #efeebe;
+}
+
+.square-content-service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+    background-color: white;
+    width: 1180px;
+    height: 870px;
+    margin-left: 10px;
+    border-radius: 50px;
+    padding: 50px;
+    box-shadow:
+       inset 0 -3em 3em rgba(0,0,0,0.1),
+             0 0  0 2px rgb(255, 255, 255),
+             0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+
+.search-service {
+    display: flex;
+}
+
+.button-search-service {
+    border: none;
+    padding: 10px;
+    border-radius: 100% 10px 10px 100%;
+    padding-right: 20px;
+    cursor: pointer;
+    width: 70px;
+    height: 60px;
+    background-color: var(--color-dark);
+}
+
+.button-search-service img {
+    width: 35px;
+}
+
+.button-search-service:hover {
+    transition: .5s;
+}
+ 
+.button-search-service:active {
+    transition: .1s;
+}
+
+.button-search-service:active:hover img {
+    transform: rotate(80deg);
+    margin-left: 0px;
+    transition: 0s;
+}
+
+.button-search-service:active:hover {
+    background-color: var(--main-color);
+}
+
+.button-search-service:hover img{
+    width: 30px;
+    margin-left: 40px;
+    transform: rotate(20deg);
+    transition: .5s;
+}
+
+.button-search-service {
+    flex: .5;
+}
+
+.input-search-service {
+    flex: 15;
+}
+
+.search-sheet {
+    flex: 1;
+}
+
+.search-service {
+    width: 1000px;
+}
+
+.input-search-service {
+    border: .1 solid rgba(180, 176, 176, 0.884);
+    margin-left: -5px;
+    padding-left: 30px;
+    font-size: 20pt;
+    outline: none;
+}
+
+.search-sheet {
+    outline: none;
+    cursor: pointer;
+    border-left-color: transparent;
+    border-radius: 0px 20px 20px 0px;
+    font-size: medium;
+}
+
+.search-message-choose-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message-choose-area, .message-service-not-found {
+    color: var(--red-dark);
+    font-weight: 800;
+}
+
+.inf-main-service {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.state-priority-billing {
+    display: flex;
+    align-items: flex-end;
+}
+
+.card-service {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-service h2 {
+    text-align: center;
+    font-size: 15pt;
+    text-transform: uppercase;
+    z-index: 1;
+}
+
+.card-service h4 {
+    text-transform: uppercase;
+    padding: 10px;
+    text-align: center;
+}
+
+.card-service h4[name="Liberado"], .card-service h4[name="Facturado"] {
+    color: var(--green-dark);
+    background-color: var(--green-light);
+}
+
+.card-service h4[name="BAJA"], .card-service h4[name="CONTRATO MARCO"] {
+    color: var(--blue-dark);
+    background-color: var(--blue-light);
+}
+
+.card-service h4[name="MEDIA"], .card-service h4[name="Parcial"] {
+    color: var(--yellow-dark);
+    background-color: var(--yellow-light);
+}
+
+.card-service h4[name="ALTA"], .card-service h4[name="Sin facturar"], .card-service h4[name="Sin Liberar"] {
+    color: var(--red-dark);
+    background-color: var(--red-light);
+}
+
+.id-description {
+    margin-right: 80px;
+}
+
+.id-description h1 {
+    color: var(--main-color-dark);
+    font-size: 25pt;
+}
+
+.description-services {
+    width: 350px;
+}
+
+.hr-square-content-service-horizontal hr {
+    border: 1px dashed rgba(128, 128, 128, 0.425); height: 0;
+}
+
+.hr-square-content-service-horizontal-short hr {
+    border: 1px dashed rgba(128, 128, 128, 0.425); width: 105%; margin-top: 15px; margin-bottom: 15px;
+}
+
+.hr-horizontal-short-modal-coordinator hr,  .hr-horizontal-short-modal-reliability hr{
+    border: 1px dashed rgba(128, 128, 128, 0.425); width: 100%; margin-top: 15px; margin-bottom: 15px;
+}
+
+.hr-square-content-service-vertical hr {
+    border: 1px dashed rgba(128, 128, 128, 0.425); height: 90%; margin-top: 15px;
+}
+
+.people-involved {
+    margin-top: 30px;
+    margin-right: 40px;
+}
+
+.people-involved h4 {
+    font-size: 10pt;
+}
+
+.people-involved h2 {
+    font-size: 15pt;
+}
+
+.content-number-creditor h3 {
+    background-color: #DCE7F5;
+    font-size: medium;
+    color: var(--color-dark);
+    width: 50%;
+    height: 10px;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.provider, .request, .authorize {
+    width: 100%;
+}
+
+.main-inf-provider h4, .main-inf-request h4, .main-inf-authorize h4 {
+    text-align: end;
+}
+
+.main-inf-provider h4 {
+    color: var(--color-dark);
+}
+
+.main-inf-request h4 {
+    color: var(--red-dark);
+}
+
+.main-inf-authorize h4 {
+    color: var(--yellow-dark);
+}
+
+.main-inf-provider h2, .main-inf-request h2, .main-inf-authorize h2, .date-order h2, .solped h2, .order h2 {
+    font-size: medium;
+    color: aliceblue;
+    padding: 10px;
+}
+
+.main-inf-provider h2 {
+    background-color: var(--color-dark);
+}
+
+.main-inf-request h2, .date-request h2, .imputation-request h2{
+    background-color: var(--red-dark);
+}
+
+.main-inf-authorize h2, .date-authorize h2, .imputation-authorize h2 {
+    background-color: var(--yellow-dark);
+}
+
+.observations-reliability img {
+    background-color: black;
+}
+
+.date-order h2, .solped h2, .order h2 {
+    background-color: black;
+}
+
+.order h2 {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+}
+
+.observations-reliability {
+    background-color: transparent;
+    border: none;
+}
+
+.observations-reliability img {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 5px grey;
+    transition: .7s;
+    margin-right: -60px;
+}
+
+.observations-reliability img:hover {
+    background-color: rgba(128, 128, 128, 0.555);
+    transition: .7s;
+}
+
+.observations-reliability img:active {
+    box-shadow: 0 0px;
+    transform: translateY(6px);
+    transition: .01s;
+}
+
+.date-request h2, .imputation-request h2, .date-authorize h2, .imputation-authorize h2, .observations-authorize img, .observations-reliability img {
+    font-size: medium;
+    padding: 10px;
+    text-align: center;
+    border-radius: 30px;
+}
+
+.date-request h2, .imputation-request h2 {
+    color: var(--red-light);
+}
+
+.date-authorize h2, .imputation-authorize h2 {
+    color: var(--yellow-light);
+}
+
+.date-request h3, .imputation-request h3, .date-authorize h3, .imputation-authorize h3 {
+    text-align: center;
+    font-size: 12pt;
+}
+
+.inf-authorize, .inf-request {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.reliability {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.date-request, .date-authorize, .imputation-authorize, .observations-authorize, .observations-reliability {
+    margin: 10px;
+}
+
+.observations-reliability img {
+    width: 60px;
+    margin-left: 2px;
+}
+
+.observations-reliability {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.alert-observations-reliability, .alert-observations-autorize {
+    display: block;
+    background-color: #B42C44;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.observations-message-reliability, .observations-message-autorize {
+    display: none;
+}
+
+.alert-observations-reliability[name=""], .alert-observations-autorize[name=""]{
+    display: none;
+}
+
+.observations-message-reliability[name=""], .observations-message-autorize[name=""] {
+    display: block;
+}
+
+.imputation-authorize, .imputation-request {
+    width: 200px;
+}
+
+.inf-bottom-service {
+    display: flex;
+    justify-content: space-around;
+}
+
+.quotation-valueBeforeVat-reliability {
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-quotation h2, .content-valueBeforeVat h2 {
+    background-color: #5271FF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 30px;
+    font-size: medium;
+}
+
+.inf-quotation {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.inf-quotation h3 {
+    margin: 2px;
+}
+
+.inf-quotation a, .order a {
+    background-color: darkgray;
+    color: aliceblue;
+    padding: 10px;
+    border-radius: 100%;
+    border: none;
+}
+
+.inf-quotation a:hover, .order a:hover {
+    background-color: rgb(100, 100, 100);
+    cursor: pointer;
+    transition: .5s;
+}
+
+.order a {
+    color: aliceblue;
+}
+
+/* div.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+} */
+
+.type-money h3 {
+    background-color: #2F3B70;
+    width: 100%;
+    border-radius: 10px;
+    color: aliceblue;
+    text-align: center;
+    padding: 5px;
+}
+
+.type-money, .quotation-valueBeforeVat, .order-pdf-number, .content-number-creditor, .inf-authorize-observations {
+    display: flex;
+}
+
+.quotation-valueBeforeVat {
+    align-items: center;
+    justify-content: space-around;
+}
+
+.order-pdf-number {
+    align-items: center;
+}
+
+.order-pdf-number a {
+    background-color: #2F3B70;
+    cursor: pointer;
+}
+
+.money-valueBeforeVat {
+    display: flex;
+    font-size: large;
+}
+
+.money-valueBeforeVat h4{
+    font-size: 12pt;
+}
+
+.content-quotation, .content-valueBeforeVat {
+    margin: 10px 
+}
+
+.content-moneys-valueBeforeVat {
+    display: flex;
+    margin-top: -10px;
+}
+
+.content-valueBeforeVat {
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order a {
+    font-size: initial;
+    border-radius: 0%;
+    background-color: gray;
+    padding: 10px;
+}
+
+.observations-reliability img {
+    margin-right: -12px;
+}
+
+.modal-title-services {
+        background-color: var(--blue-dark);
+        color: aliceblue;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        margin: -16px -32px 0px;
+        border-radius: 20px 20px 0px 0px;
+}
+
+.observations-modal {
+    margin: 20px;
+}
+
+.coordinator-observation-name h2, .reliability-observation-name h2 {
+    -webkit-text-stroke: 1px black;
+}

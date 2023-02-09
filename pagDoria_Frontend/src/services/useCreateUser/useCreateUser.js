@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { REACT_APP_API_URL } from "../../utils/constanst"
 import { validatorEmail } from "../../utils/validatorEmail"
 
 export const useCreateUser = (cb, request) => {
@@ -33,14 +34,12 @@ export const useCreateUser = (cb, request) => {
             body: JSON.stringify(request),
             redirect: 'follow'
           };
+
           
-          fetch(`${process.env.REACT_APP_API_URL}/api/sign-up`, requestOptions)
+          
+          fetch(`${REACT_APP_API_URL}/api/sign-up`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                // console.log('result --->', result)
-                if(result.error){
-                    throw new Error(result.error)
-                }
                 cb()
             })
             .catch(error => {

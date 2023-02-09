@@ -8,9 +8,7 @@ import { useGetAllUsers } from '../../../services/useGetAllUsers/useGetAllUsers'
 import { useDeleteUser } from '../../../services/useDeleteUser/useDeleteUser';
 import { useEditUser } from '../../../services/useEditUser/useEditUser';
 import { useCreateUser } from '../../../services/useCreateUser/useCreateUser';
-// import { Autocomplete } from '@mui/material';
-// import { useParams } from "react-router-dom"; 
-// import { GlobalContext } from "../../../state/GlobalState";
+import { SUBROL } from '../../../utils/constanst';
 
 export const BossesUsers = () => {
     const [modalCreate, setModalCreate] = useState(false);
@@ -23,6 +21,7 @@ export const BossesUsers = () => {
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
     const [rol, setRol] = useState('')
+    const [subrol, setSubrol] = useState('')
 
     const {users, getAllUsers, nextAndPrevious, count, pag, search, handleChangeSearchInput, handleChangeSearchSelectRol, searchInput, searchSelectRol} = useGetAllUsers()
 
@@ -35,12 +34,12 @@ export const BossesUsers = () => {
         getAllUsers()
         setModalEdit(false)
         setUserSelected({})
-    }, {name, rol, email})
+    }, {name, rol, subrol, email})
 
     const {sendRequest, error:errorCreate} = useCreateUser(() => {
         getAllUsers()
         setModalCreate(false)
-    }, {name, rol, email, password, password2})
+    }, {name, rol, subrol, email, password, password2})
     
     useEffect(() => {
         getAllUsers()
@@ -89,6 +88,23 @@ export const BossesUsers = () => {
                             <option value="bosses">Jefe</option>
                         </select>
                     </div>
+                        <div className="select-wrap">
+                            <select 
+                                name="subrol"
+                                className="select-field"
+                                onChange={(e) => setSubrol(e.target.value)} 
+                                autoComplete="off"
+                                defaultValue={subrol}
+                            >
+                                <option hidden value>Subrol</option>
+                                <option value="mechanic">Mecanico</option>
+                                <option value="windmill">Servicios/Molino</option>
+                                <option value="electric">Electrico</option>
+                                <option value="metrology">Metrologo</option>
+                                <option value="capex">CAPEX</option>
+                                <option value="reliability">Confiabilidad/Dirección</option>
+                            </select>
+                        </div>
                     <TextField 
                         className='textField'
                         label="Nombre" 
@@ -145,6 +161,7 @@ export const BossesUsers = () => {
         setUserSelected(user)
         setModalEdit(true)
         setRol(user.rol)
+        setSubrol(user.subrol)
         setName(user.name)
         setEmail(user.email)
     }
@@ -169,11 +186,28 @@ export const BossesUsers = () => {
                         <select 
                             name="rol"
                             className="select-field" 
+                            onChange={(e) => setRol(e.target.value)} 
                             value={rol}
                         >
                             <option hidden value>Rol</option>
                             <option value="tech">Técnico</option>
                             <option value="bosses">Jefe</option>
+                        </select>
+                    </div>
+                    <div className="select-wrap">
+                        <select 
+                            name="subrol"
+                            className="select-field" 
+                            onChange={(e) => setSubrol(e.target.value)} 
+                            value={subrol}
+                        >
+                            <option hidden value>Subrol</option>
+                            <option value="mechanic">Mecanico</option>
+                            <option value="windmill">Servicios/Molino</option>
+                            <option value="electric">Electrico</option>
+                            <option value="metrology">Metrologo</option>
+                            <option value="capex">CAPEX</option>
+                            <option value="reliability">Confiabilidad/Dirección</option>
                         </select>
                     </div>
                     <TextField 
@@ -280,7 +314,11 @@ export const BossesUsers = () => {
                     {users.map((user) => (
                                 <div className="card-user">
                                     <div className="inf-user">
-                                        <h3>{getRol(user.rol)}<br /></h3><hr />
+                                        <div className="roles">
+                                            <h3>{getRol(user.rol)}<br /></h3>
+                                            <h5>{SUBROL[user.subrol]}</h5>
+                                        </div>
+                                        <hr />
                                         <div className="inf-personal">
                                             <h4>{user.name}<br /></h4>
                                             <h6><i>{user.email}<br /></i></h6>

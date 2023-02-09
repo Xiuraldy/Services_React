@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../state/GlobalState";
 import { motion } from "framer-motion"
 import './styleSign.css' 
+import { REACT_APP_API_URL } from "../../utils/constanst";
 
 export const SignUpLogin = () => {
     const [name, setName] = useState('')
@@ -10,6 +11,7 @@ export const SignUpLogin = () => {
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
     const [rol, setRol] = useState('')
+    const [subrol, setSubrol] = useState('')
     const [isError, setIsError] = useState(false)
     const [messageError, setMessageError] = useState('')
     const [isLogin, setIsLogin] = useState(true)
@@ -48,7 +50,7 @@ export const SignUpLogin = () => {
 
     const validatorRegister = () => {
         const regexEmail =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        if(rol=== '' || name=== '' || email === '' || password === '' || password2 === '') {
+        if(rol=== '' || subrol=== '' || name=== '' || email === '' || password === '' || password2 === '') {
             setIsError(true)
             setMessageError('Complete todos los espacios')
             return false
@@ -76,6 +78,7 @@ export const SignUpLogin = () => {
             password: password, 
             password2: password2, 
             rol: rol,
+            subrol: subrol,
             email: email
         }
         // console.log('request --->', request)
@@ -88,7 +91,7 @@ export const SignUpLogin = () => {
             redirect: 'follow'
           };
           
-          fetch(`${process.env.REACT_APP_API_URL}/api/sign-up`, requestOptions)
+          fetch(`${REACT_APP_API_URL}/api/sign-up`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 // console.log('result --->', result)
@@ -124,8 +127,7 @@ export const SignUpLogin = () => {
             redirect: 'follow'
           };
           
-          // console.log(process.env);
-          fetch(`${process.env.REACT_APP_API_URL}/api/login`, requestOptions)
+          fetch(`${REACT_APP_API_URL}/api/login`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 // console.log('result --->', result)
@@ -244,19 +246,37 @@ export const SignUpLogin = () => {
                                 </div>
 
                                 <div className="actual-form">
-                                    <div className="rolName">
-                                        <div className="select-wrap">
-                                            <select 
-                                                name="rol"
-                                                className="select-field"
-                                                onChange={(e) => setRol(e.target.value)} 
-                                                autoComplete="off"
-                                                defaultValue={rol}
-                                            >
-                                                <option hidden value>Rol</option>
-                                                <option value="tech">Técnico</option>
-                                                <option value="bosses">Jefe</option>
-                                            </select>
+                                        <div className="rol-subrol">
+                                            <div className="select-wrap">
+                                                <select 
+                                                    name="rol"
+                                                    className="select-field"
+                                                    onChange={(e) => setRol(e.target.value)} 
+                                                    autoComplete="off"
+                                                    defaultValue={rol}
+                                                >
+                                                    <option hidden value>Rol</option>
+                                                    <option value="tech">Técnico</option>
+                                                    <option value="bosses">Jefe</option>
+                                                </select>
+                                            </div>
+                                                <div className="select-wrap">
+                                                    <select 
+                                                        name="subrol"
+                                                        className="select-field"
+                                                        onChange={(e) => setSubrol(e.target.value)} 
+                                                        autoComplete="off"
+                                                        defaultValue={subrol}
+                                                    >
+                                                        <option hidden value>Subrol</option>
+                                                        <option value="mechanic">Mecanico</option>
+                                                        <option value="windmill">Servicios/Molino</option>
+                                                        <option value="electric">Electrico</option>
+                                                        <option value="metrology">Metrologo</option>
+                                                        <option value="capex">CAPEX</option>
+                                                        <option value="reliability">Confiabilidad/Dirección</option>
+                                                    </select>
+                                                </div>
                                         </div>
                                         <div className="input-wrap" name="name">
                                             <input 
@@ -269,7 +289,6 @@ export const SignUpLogin = () => {
                                             />
                                             <label>Nombre</label>
                                         </div>
-                                    </div>
                                     <div className="input-wrap">
                                         <input 
                                             type="email" 

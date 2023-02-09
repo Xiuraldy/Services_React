@@ -1,0 +1,204 @@
+.content-get {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    margin: 30px;
+    border: 2px dashed aliceblue;
+    width: 1180px;
+    height: 690px;
+    margin-left: 10px;
+    margin-top: 110px;
+    overflow-y: auto;
+    box-shadow: 0 0 0 2px rgb(255 255 255 / 0%), 0.3em 0.3em 1em rgb(0 0 0 / 30%);
+}
+
+.content-get[name="tech"] {
+    height: 510px;
+    margin-top: 200px;
+}
+
+.content-parts-form-get-services {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.part-form-get-services-everyone, .part-form-get-services-authorize, .part-form-get-services-reliability {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    padding: 12px;
+    border-radius: 10px;
+    margin: 5px;
+    border: 4px solid var(--red-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.part-form-get-services-authorize {
+    display: flex;
+    flex-direction: column;
+    border: 4px solid var(--blue-light);
+}
+
+.part-form-get-services-reliability {
+    display: flex;
+    flex-direction: column;
+    border: 4px solid var(--yellow-dark);
+}
+
+.part-form-get-services-everyone[name="money"] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-basis: 50%;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    position: relative;
+}
+
+.part-form-get-services-everyone[name="description"] {
+    grid-column-start: 5;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+.part-form-get-services-everyone[name="description"] input {
+    height: 200px;
+}
+
+.part-form-get-services-everyone[name="quotation"] {
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-column-start: 2;
+}
+
+.part-form-get-services-everyone[name="imputation-soli"] {
+    grid-row-start: 2;
+    grid-column-start: 1;
+}
+
+.part-form-get-services-authorize[name="observation"] {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 3;
+}
+
+.part-form-get-services-everyone h2, .part-form-get-services-authorize h2, .part-form-get-services-reliability h2 {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pdf-cotizacion {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.hr-quotation {
+    margin-top: 10px;
+    border: 1px dashed var(--red-dark); height: 0;
+}
+
+.pdf-cotizacion img {
+    height: 50px;
+}
+
+.pdf-cotizacion h3 {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.money-get-services {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.square-parts-form-get-services {
+    display: grid;
+    grid-template-columns: repeat(4, 282px);
+}
+
+.part-form-get-services-everyone img, .part-form-get-services-authorize img, .part-form-get-services-reliability img {
+    width: 50px;
+}
+
+.button-add {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    border: 2px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .1s;
+    background-color: #1a164a;
+    color: white;
+    margin-bottom: 9px;
+}
+
+.button-add:hover {
+    background-color: #1a164a;
+    color: white;
+} 
+
+.button-add:active {
+    background-color: #443d91;
+    box-shadow: 0 1px white;
+    transform: translateY(6px);
+}
+
+.part-form-get-services-sheet {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.area-send {
+    display: flex;
+    margin-top: 10px;
+}
+
+.select-other {
+    display: flex;
+}
+
+.select {
+    flex: 1;
+}
+
+.search-sheet[name="get"] {
+    margin: 10px;
+    border-radius: 30px;
+    padding: 10px;
+    text-align: center;
+    border: 6px solid #1a164a;
+}
+
+.button-add {
+    margin: 10px;
+}
+
+.pdf-name-pdf {
+    display: flex;
+    flex-direction: column;
+}
+
+.pdf-name-pdf input {
+    margin-top: -5px;
+}
+
+
+

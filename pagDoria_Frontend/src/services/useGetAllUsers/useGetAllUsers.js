@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { REACT_APP_API_URL } from '../../utils/constanst';
 export const useGetAllUsers = () => {
     const [users, setUsers] = useState([])
     const [pag, setPag] = useState(1)
@@ -35,7 +36,7 @@ export const useGetAllUsers = () => {
 
     const getAllUsers = (pagine=1, search, searchRol) => {
         setPag(pagine)
-        let url = `${process.env.REACT_APP_API_URL}/api/users?pag=${pagine}`
+        let url = `${REACT_APP_API_URL}/api/users?pag=${pagine}`
         if(search || searchRol){
             url += `&search=${search}`
             url += `&search=${searchRol}`

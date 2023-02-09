@@ -21,7 +21,7 @@ export const RoutesDoria = () => {
             <Router>
             <div style={{display: 'flex', height: '100vh', width: '100%'}}>
                 <Menu />
-                <div style={{flex: 1}}>
+                <div style={{flex: 1, overflow: 'auto'}}>
                     <Routes>
                         <Route path='/sign-up-login' element={<SignUpLogin />} />
                         <Route path='/tech/*' element={<TechRoutes />} />
