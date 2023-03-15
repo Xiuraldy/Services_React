@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { Routes, Route, useNavigate } from "react-router-dom"
 import { CommonsGet } from "../page/commons/get/CommonsGet"
 import { CommonsView } from "../page/commons/view/CommonsView"
+import { CommonsDepartureCertificate } from "../page/commons/departure-certificate/CommonsDepartureCertificate"
 import { Tech } from "../page/tech/Tech/Tech"
 
 export const TechRoutes = () => {
@@ -27,6 +28,7 @@ export const TechRoutes = () => {
                     <Route path='/' element={<Tech />} />
                     <Route path='/view' element={<CommonsView />} />
                     <Route path='/get' element={<CommonsGet />} />
+                    <Route path='/departure-certificate' element={<CommonsDepartureCertificate />} />
                 </Routes>
         </div>
     )

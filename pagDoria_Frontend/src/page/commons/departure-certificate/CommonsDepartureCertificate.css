@@ -1,0 +1,360 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+*, *::before, *::after {
+    font-family: "Poppins";
+}
+
+.content-departure-certificate {
+    background-color: white;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border: 5px solid #335396;
+    border-radius: 10px;
+    width: 1200px; 
+    padding: 50px;
+}
+
+.content-departure-certificate[name="certificate"] {
+    width: 1800px; 
+}
+
+.form-departure-certificate {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px;
+}
+
+.logo-form-departure-certificate {
+    display: flex;
+    justify-content: center;
+}
+
+.logo-form-departure-certificate img {
+    width: auto;
+    filter: sepia(100%) hue-rotate(190deg) saturate(400%) opacity(50%);
+}
+
+.item-form-departure-certificate {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    text-align: center;
+    padding: 2px;
+}
+
+.item-form-departure-certificate[name="pdf"] {
+    font-size: 30px;
+}
+
+.caption-form-departure-certificate {
+    font-family: "Poppins";
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 800;
+    background-color: aliceblue;
+    align-items: center;
+    line-height: 12px;
+    border-radius: 10px;
+    color: black;
+}
+
+.caption-form-departure-certificate[name="caption-main"] {
+    background-color: aliceblue;
+    border: 2px solid #335396;
+}
+
+.caption-form-departure-certificate[name="pdf"] {
+    font-size: 30px;
+    line-height: 10px;
+}
+
+.caption-form-departure-certificate[name="pdf"] {
+    font-size: 25px !important;
+    line-height: 30px !important;
+    text-align: center !important;
+}
+
+.caption-form-departure-certificate[name="departure"] {
+    border: 2px dashed #335396;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    height: auto;
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    align-items: center;
+    line-height: 35px;
+    border-radius: 10px;
+    color: black !important;
+    background-color: transparent;
+    grid-column-start: 3;
+    grid-row-start: 1;
+}
+
+.date-form-departure-certificate {
+    border: 2px dashed aliceblue;
+    font-size: 25px;
+    line-height: 35px;
+    display: flex;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background-color: white;
+    color: #335396;
+}
+
+.item-form-departure-certificate[id="reference"] {
+    grid-column-start: 1;
+    grid-row-start: 5;
+    grid-column-end: 2;
+}
+
+.item-form-departure-certificate[id="plate"] {
+    grid-column-start: 3;
+    grid-row-start: 5;
+    grid-column-end: 4;
+}
+
+.item-form-departure-certificate[id="other"] {
+    grid-column-start: 2;
+    grid-row-start: 7;
+    grid-column-end: 6;
+}
+
+.item-form-departure-certificate[name="pdf"] {
+    font-size: 20px;
+}
+ 
+.title-form-departure-certificate {
+    font-size: large;
+    color: #335396;
+    font-size: 20.5px;
+    line-height: 20px;
+    font-weight: 800;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-img-modal-certificate {
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    margin-bottom: -30px;
+    align-items: center;
+}
+
+.id-form-departure-certificate {
+    background-color: #335396;
+    color: aliceblue;
+    padding-left:50px;
+    padding-right:50px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 10px;
+}
+
+.item-form-departure-certificate[name="buttons-certificate"] {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    grid-column-start: 5;
+    grid-row-start: 1;
+    grid-column-end: 5;
+}
+
+.input-form-departure-certificate {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.button-form-departure-certificate {
+    background-color: #335396;
+    border-radius: 100%;
+    border: none;
+    height: 30px;
+    width: 62px;
+    padding: 30px;
+}
+
+.title-img-modal-certificate[name="print"] {
+    background-color: #335396;
+}
+
+.button-form-departure-certificate[name="approval-print"], .title-img-modal-certificate[name="authorize"] {
+    background-color: #96c362;
+}
+
+.button-form-departure-certificate[name="send-print"], .title-img-modal-certificate[name="send"] {
+    background-color: #20c997;
+}
+
+.button-form-departure-certificate[name="approval-print"], img {
+    width: 45px;
+}
+
+.button-form-departure-certificate[name="approval-print"]:hover {
+    background-color: #96c36281;
+}
+
+.button-form-departure-certificate[name="send-print"]:hover {
+    background-color: #20c9967c;
+}
+
+.button-form-departure-certificate img {
+    width: 50px;
+}
+
+.button-form-departure-certificate:hover {
+    background-color: rgba(127, 128, 197, 0.822);
+    transition: 1s;
+    cursor: pointer;
+}
+
+.pdf-departure-certificate {
+    margin-left: 100px;
+}
+
+.modal-title[name="certificate"] {
+    text-align: center;
+}
+
+.modal-title[name="certificate"] img{
+    width: 30px;
+}
+
+.logo-form-departure-certificate {
+    height: auto;
+}
+
+.logo-form-departure-certificate img {
+    width: 120px;
+    height: 140px;
+    grid-column-start: 4;
+    grid-row-start: 1;
+    grid-column-end: 5;
+}
+
+.pdf-departure-certificate .caption-form-departure-certificate[name="caption-main"]{
+    font-size: 35px;
+    color: #335396;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-form-departure-certificate[name="title-pdf"] {
+    font-size: 40px;
+    line-height: 55px;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-column-end: 3;
+}
+
+.search-service[name="depeartureCertificate2"] {
+    width: 100%;
+}
+
+.search-service[name="depeartureCertificate"] {
+    width: 100%;
+}
+
+.search-carousel[name="depeartureCertificate"] {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.carrousel-pendings[name="depeartureCertificate"] {
+    display: flex;
+    align-items: center;
+    width: 90.6%;
+    justify-content: space-evenly;
+}
+
+.input-form-departure-certificate[name="hidden"] {
+    display: none;
+}
+
+.item-form-departure-certificate[name="caption-main-dates"] {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    grid-column-end: 6;
+}
+
+.item-form-departure-certificate[name="caption-main-dates-certificate"] {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    grid-column-end: 6;
+
+    font-size: 100px;
+}
+
+.item-form-departure-certificate[name="caption-main-other"] {
+    grid-column-start: 1;
+    grid-row-start: 4;
+    grid-column-end: 6;
+}
+
+.item-form-departure-certificate[name="caption-main-other-certificate"] {
+    grid-column-start: 1;
+    grid-row-start: 4;
+    grid-column-end: 6;
+
+    font-size: 100px;
+}
+
+.content-specifications {
+    display: contents;
+}
+
+.item-form-departure-certificate-hidden {
+    width: 10px;
+    margin-left: 10px;
+}
+
+.item-form-departure-certificate[name="caption-main-authorize"] {
+    grid-column-start: 1;
+    grid-row-start: 8;
+    grid-column-end: 6;
+}
+
+.item-form-departure-certificate[name="caption-main-authorize-certificate"] {
+    grid-column-start: 1;
+    grid-row-start: 8;
+    grid-column-end: 6;
+
+    font-size: 100px;
+}
+
+.item-form-departure-certificate[name="depeartureCertificate"] {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-column-end: 5;
+}
+
+.signature-certificate h2 {
+    text-align: end;
+    font-size: 30px;
+    padding-top: 5px;
+    width: 400px;
+    color: #335396;
+}
+
+.signature-certificate {
+    margin-top: 40px;
+    margin-left: 1280px;
+}
+
+.signature-certificate hr {
+    margin-top: 150px;
+    width: 400px;
+    color: #335396;
+}

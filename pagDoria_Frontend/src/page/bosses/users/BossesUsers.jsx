@@ -25,6 +25,13 @@ export const BossesUsers = () => {
 
     const {users, getAllUsers, nextAndPrevious, count, pag, search, handleChangeSearchInput, handleChangeSearchSelectRol, searchInput, searchSelectRol} = useGetAllUsers()
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            // 👇 Get input value
+            search()
+        }
+    };
+
     const {deleteId} = useDeleteUser(() => {
         getAllUsers()
         setModalDelete(false)
@@ -272,6 +279,7 @@ export const BossesUsers = () => {
                             id='search-user-rol'
                             value={searchSelectRol}
                             onChange={(e) => handleChangeSearchSelectRol(e.target.value)}
+                            onKeyDown={handleKeyDown}
                         >
                             <option value="">Rol</option>
                             <option value="tech">Técnico</option>
@@ -279,7 +287,7 @@ export const BossesUsers = () => {
                         </select>
                     </div>
                     <div className="search-users">
-                        <input type="text" id='search-user' value={searchInput} onChange = {(e) => handleChangeSearchInput(e.target.value)}/>
+                        <input type="text" id='search-user' value={searchInput} onChange = {(e) => handleChangeSearchInput(e.target.value)} onKeyDown={handleKeyDown}/>
                         <motion.button className="container"
                             whileHover={{ scale: 1,  rotate: 20, y: 10}}
                             whileTap={{ scale: 1, rotate: -10, y: -10 }}

@@ -3,7 +3,7 @@
     margin-right: 380px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
 }
 
 .content-cards-users {

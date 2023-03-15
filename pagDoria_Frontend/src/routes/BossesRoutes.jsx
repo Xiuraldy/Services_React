@@ -4,6 +4,7 @@ import { BossesAuthorize } from "../page/bosses/authorize/BossesAuthorize"
 import { BossesUsers } from "../page/bosses/users/BossesUsers"
 import { CommonsGet } from "../page/commons/get/CommonsGet"
 import { CommonsView } from "../page/commons/view/CommonsView"
+import { CommonsDepartureCertificate } from "../page/commons/departure-certificate/CommonsDepartureCertificate"
 
 export const BossesRoutes = () => {
     const navigate = useNavigate()
@@ -29,6 +30,7 @@ export const BossesRoutes = () => {
                     <Route path='/users' element={<BossesUsers />} />
                     <Route path='/view' element={<CommonsView />} />
                     <Route path='/get' element={<CommonsGet />} />
+                    <Route path='/departure-certificate' element={<CommonsDepartureCertificate />} />
                 </Routes>
         </div>
     )

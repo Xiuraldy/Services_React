@@ -1,3 +1,5 @@
+//Conexión con la Base De Datos
+
 const Pool = require('pg').Pool
 
 const pool = new Pool({

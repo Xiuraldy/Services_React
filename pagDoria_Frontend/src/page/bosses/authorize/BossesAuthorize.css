@@ -1,0 +1,224 @@
+.carrousel-pendings[name="authorize"] {
+    display: flex;
+    align-items: center;
+    width: 94%;
+    justify-content: space-evenly;
+}
+
+.search-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.title-item-pending {
+    font-weight: 600;
+}
+
+.item-pending {
+    font-size: 13pt;
+}
+
+.title-item-pending, .item-pending {
+    background-color: var(--grey-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 0px 0px 20px 20px;
+    border: none;
+    color: aliceblue;
+}
+
+.item-pending:hover {
+    background-color: var(--grey-light);
+    cursor: pointer;
+    transition: .2s;
+}
+
+.item-pending:focus {
+    background-color: var(--grey-light);
+}
+
+.square-content-service[name="edit"]{
+    filter: url('#posterize');
+    overflow: scroll;
+    overflow-x: unset;
+    border-radius: 5px;
+    padding-left: 160px;
+    padding-right: 160px;
+}
+
+.input-editPosts {
+    display:flex;
+    flex-direction:column;
+    outline: none; 
+    color: black;
+    border: 0;
+    width: 100%;
+    background-color: #ffffff;
+    font-weight: 800;
+    height: auto;
+    margin: 0%;
+    padding: 0%;
+    font-family: "Poppins";
+    margin: -10px;
+}
+
+.input-editPosts[name="provider-edit"] {
+    
+    width: auto;
+}
+
+.input-editPosts[name="description-textarea"] {
+    width: 420px;
+}
+
+.input-search-service[name="edit-search"] {
+    width: 50px;
+}
+
+.search-service[name="authorize"] {
+    width: 1000px;
+}
+
+.description-services[name="edit"] {
+    width: 350px;
+}
+
+.id-description[name="edit"], .state-priority-billing[name="edit"] {
+    margin-right: 0px;
+}
+
+.state-priority-billing[name="edit"] {
+    align-items: center;
+}
+
+.decline-service button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.decline-service img {
+    width: 40px;
+}
+
+.button-update-service button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.button-update-service button:hover, .decline-service button:hover{
+    filter: drop-shadow(1px 1px 10px rgba(128, 128, 128, 0.527));
+    transition: .7s;
+}
+
+.button-update-service button:active{
+    filter: none;
+    transition: .1s;
+}
+
+.button-update-service img {
+    width: 40px;
+}
+
+.people-involved[name="edit"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.date-request[name="edit"] h2, .imputation-request[name="edit"] h2, .date-authorize[name="edit"] h2, .imputation-authorize[name="edit"] h2 {
+    margin-bottom: 10px;
+}
+
+.quotation-valueBeforeVat[name="edit"] {
+    align-items: center;
+    display: inline-grid;
+    justify-content: space-around;
+    justify-items: center;
+}
+
+.quotation-valueBeforeVat-reliability[name="edit"] {
+    margin: 10px;
+}
+
+.inf-quotation[name="edit"] {
+    margin-top: 20px;
+}
+
+.money-valueBeforeVat[name="edit"] {
+    margin: 10px;
+}
+
+.hr-square-content-service-vertical[name="edit"] hr {
+    height: 100%;
+}
+
+.inf-main-service[name="edit"]{
+    justify-content: space-around;
+    align-items: stretch;
+    background-color: aliceblue;
+    padding: 30px;
+}
+
+.MuiInputBase-input[name="description"] {
+    width: 250px;
+}
+
+.MuiAutocomplete-root[name="priority"] {
+    width: 150px;
+}
+
+.order[name="edit"] h2 {
+    width: 619px;
+}
+
+.state-edit, .state-invoice {
+    background-color: rgba(128, 128, 128, 0.432);
+}
+
+.state-edit {
+    height: 50px;
+    width: auto;
+}
+
+.state-invoice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 180px;
+}
+
+.priority-select {
+    width: 150px;
+    padding: 11px;
+}
+
+.priority-select[name="BAJA"] {
+    color: var(--blue-dark);
+    background-color: var(--blue-light);
+}
+
+.priority-select[name="MEDIA"] {
+    color: var(--yellow-dark);
+    background-color: var(--yellow-light);
+}
+
+.priority-select[name="ALTA"] {
+    color: var(--red-dark);
+    background-color: var(--red-light);
+}
+
+.other[name="edit-services"] input {
+    width: 302px;
+}
+
+/* Tooltip
+.css-cpgvjg-MuiSnackbar-root[name="edit"] {
+    width: 100px;
+} */

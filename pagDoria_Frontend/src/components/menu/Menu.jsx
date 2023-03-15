@@ -92,22 +92,44 @@ export const Menu = () => {
                                         {
                                             rol==='tech' && (
                                                 <>
+                                                <HtmlTooltip title="Acta de Entrega de Componente" placement="right" arrow className='tooltip'>
+                                                    <li>
+                                                        <div onClick={() => redirect('departure-certificate')} className={`${itemSelected === 'departure-certificate' ? 'activeItem' : 'inactiveItem'}`}>
+                                                            <div className="icon">
+                                                                <img src="/assets/icon/menu/departure certificate/certificate.png" alt="certificate.png" className="width-get" />
+                                                                <img src="/assets/icon/menu/departure certificate/certificate-solid.png" alt="certificate-solid.png" className="width-get" />
+                                                            </div>
+                                                            <span className="hide" name="departure-certificate">Acta de Entrega<br />de Componente</span>
+                                                        </div>
+                                                    </li>
+                                                </HtmlTooltip>
                                                 </>
                                             ) 
                                         }
                                         {
                                             rol==='bosses' && (
                                                 <>
-                                                                <HtmlTooltip title="Autorizar y Eliminar" placement="right" arrow className='tooltip'>
+                                                                <HtmlTooltip title="Autorizar" placement="right" arrow className='tooltip'>
                                                                 <li>
                                                                     <div onClick={() => redirect('authorize')} className={`${itemSelected === 'authorize' ? 'activeItem' : 'inactiveItem'}`}>
                                                                         <div className="icon">
                                                                             <img src="/assets/icon/menu/authorize/authorize-png.png" alt="authorize-png" className="width-authorize" />
                                                                             <img src="/assets/icon/menu/authorize/authorize-solid.png" alt="authorize-solid" className="width-authorize" />
                                                                         </div>
-                                                                        <span className="sidebar-links-lines hide">Autorizar y<br /> Eliminar</span>
+                                                                        <span className="sidebar-links-lines hide">Autorizar y<br /> Editar</span>
                                                                     </div>
                                                                 </li>
+                                                                </HtmlTooltip>
+                                                                <HtmlTooltip title="Acta de Entrega de Componente" placement="right" arrow className='tooltip'>
+                                                                    <li>
+                                                                        <div onClick={() => redirect('departure-certificate')} className={`${itemSelected === 'departure-certificate' ? 'activeItem' : 'inactiveItem'}`}>
+                                                                            <div className="icon">
+                                                                                <img src="/assets/icon/menu/departure certificate/certificate.png" alt="certificate.png" className="width-get" />
+                                                                                <img src="/assets/icon/menu/departure certificate/certificate-solid.png" alt="certificate-solid.png" className="width-get" />
+                                                                            </div>
+                                                                            <span className="hide" name="departure-certificate">Acta de Entrega<br />de Componente</span>
+                                                                        </div>
+                                                                    </li>
                                                                 </HtmlTooltip>
                                                                 <HtmlTooltip title="Usuarios" placement="right" arrow className='tooltip'>
                                                                 <li>
@@ -163,7 +185,7 @@ export const Menu = () => {
                                         <h3>{firstName({name})}</h3>
                                         {rol==='tech' && <h5>Técnico</h5>}
                                         {rol==='bosses' && <h5>Jefe</h5>}
-                                        <h6>{SUBROL[user.subrol]}</h6>
+                                        <h6>{user ? SUBROL[user.subrol] : ''}</h6>
                                     </div>
                                 </div>
                                 <HtmlTooltip title="Salir" placement="right" arrow>

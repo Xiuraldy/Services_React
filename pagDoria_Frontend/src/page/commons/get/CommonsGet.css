@@ -6,16 +6,16 @@
     margin: 30px;
     border: 2px dashed aliceblue;
     width: 1180px;
-    height: 690px;
+    height: auto;
     margin-left: 10px;
-    margin-top: 110px;
+    margin-top: 50px;
     overflow-y: auto;
     box-shadow: 0 0 0 2px rgb(255 255 255 / 0%), 0.3em 0.3em 1em rgb(0 0 0 / 30%);
 }
 
 .content-get[name="tech"] {
-    height: 510px;
-    margin-top: 200px;
+    height: 640px;
+    margin-top: 150px;
 }
 
 .content-parts-form-get-services {
@@ -25,7 +25,7 @@
     align-items: center;
 }
 
-.part-form-get-services-everyone, .part-form-get-services-authorize, .part-form-get-services-reliability {
+.part-form-get-services-everyone, .part-form-get-services-authorize, .part-form-get-services-reliability, .part-form-get-services-documentExit, .part-form-get-services-documentExitPDF {
     background-color: rgb(255, 255, 255);
     color: black;
     padding: 12px;
@@ -47,6 +47,36 @@
     display: flex;
     flex-direction: column;
     border: 4px solid var(--yellow-dark);
+}
+
+.part-form-get-services-documentExit, .part-form-get-services-documentExitPDF {
+    display: flex;
+    flex-direction: column;
+    border: 4px solid var(--yellow-dark);
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 4;
+}
+
+.part-form-get-services-documentExit[name='true'] {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    z-index: 1;
+}
+
+.part-form-get-services-documentExitPDF[name="false"] {
+    display: none;
+}
+
+.part-form-get-services-documentExitPDF {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 4;
+}
+
+.part-form-get-services-documentExit h4 {
+    display: flex;
 }
 
 .part-form-get-services-everyone[name="money"] {
@@ -88,7 +118,7 @@
     grid-row-start: 3;
 }
 
-.part-form-get-services-everyone h2, .part-form-get-services-authorize h2, .part-form-get-services-reliability h2 {
+.part-form-get-services-everyone h2, .part-form-get-services-authorize h2, .part-form-get-services-reliability h2, .part-form-get-services-documentExit h2, .part-form-get-services-documentExitPDF h2 {
     margin-bottom: 10px;
     display: flex;
     align-items: center;
@@ -97,7 +127,6 @@
 
 .pdf-cotizacion {
     display: flex;
-    align-items: center;
     margin-top: 10px;
 }
 
@@ -128,7 +157,7 @@
     grid-template-columns: repeat(4, 282px);
 }
 
-.part-form-get-services-everyone img, .part-form-get-services-authorize img, .part-form-get-services-reliability img {
+.part-form-get-services-everyone img, .part-form-get-services-authorize img, .part-form-get-services-reliability img, .part-form-get-services-documentExit img, .part-form-get-services-documentExitPDF img {
     width: 50px;
 }
 
@@ -173,10 +202,19 @@
 
 .select-other {
     display: flex;
+    flex-direction: column;
 }
 
-.select {
+/* .select {
     flex: 1;
+} */
+
+.other {
+    margin-top: 10px;
+}
+
+.other input {
+    width: 212px;
 }
 
 .search-sheet[name="get"] {
@@ -201,4 +239,16 @@
 }
 
 
+.checkbox-exit {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.checkbox-exit:active {
+    transition: 10s;
+}
+
+.checkbox-exit::selection {
+    width: 10px;
+}
 

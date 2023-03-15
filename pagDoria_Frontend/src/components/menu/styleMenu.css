@@ -110,10 +110,6 @@ nav:hover .shrink-btn, .shrink-btn.hovered {
     pointer-events: all;
 }
 
-.sidebar-links {
-    padding-top: 50px;
-}
-
 .sidebar-links li {
     padding: 15px 0;
 }
@@ -278,6 +274,11 @@ nav:hover .shrink-btn, .shrink-btn.hovered {
     transition: opacity .3s .2s;
 }
 
+.hide[name="departure-certificate"] {
+    font-size: 16px;
+    line-height: 15px;
+}
+
 .tooltip {
     display: none;
 }
@@ -320,7 +321,6 @@ body.shrink {
     display: block;
 }
 
-
 /*Medidas de iconos del menu*/
 .width-excel {
     width: 35px;
@@ -337,3 +337,10 @@ body.shrink {
 .width-logout {
     width: 34px;
 }
+
+@media screen and (max-width: 420px) {
+    .nav-menu {
+        height: 100%;
+    }
+}
+

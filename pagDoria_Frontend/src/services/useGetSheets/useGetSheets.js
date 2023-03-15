@@ -9,15 +9,14 @@ export const useGetAllSheets = () => {
     const [error, setError] = useState(false)
 
     const {user} = useContext(GlobalContext)
-
-    const subrol = user ? user.subrol : '';
+    // console.log('user.subrol',user.subrol)
     
     const getAllSheets = () => {
         let url = ''
         if (searcher){
-            url = `${REACT_APP_API_URL}/api/sheet/${subrolSearch ? subrolSearch : subrol}/services/search/${"'"+searcher+"'"}`
+            url = `${REACT_APP_API_URL}/api/sheet/${subrolSearch ? subrolSearch : user.subrol}/services/search/${"'"+searcher+"'"}`
         }else{
-            url = `${REACT_APP_API_URL}/api/sheet/${subrolSearch ? subrolSearch : subrol}/services/1`
+            url = `${REACT_APP_API_URL}/api/sheet/${subrolSearch ? subrolSearch : user.subrol}/services/1`
         }
 
         const requestOptions = {
@@ -26,9 +25,12 @@ export const useGetAllSheets = () => {
         fetch(url, requestOptions)
             .then(response => response.json())
             .then((result)=>{
+                // console.log('result', result)
             setRow(result)
             if(result.length){
                 setGetValue(result[0])
+                // console.log('getValue',getValue)
+                setError(false)
             }else {
                 setError(true)
             }

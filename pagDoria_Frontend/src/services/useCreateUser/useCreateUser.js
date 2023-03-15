@@ -40,6 +40,10 @@ export const useCreateUser = (cb, request) => {
           fetch(`${REACT_APP_API_URL}/api/sign-up`, requestOptions)
             .then(response => response.json())
             .then(result => {
+                if(result.error){
+                    setError(result.error)
+                    return
+                }
                 cb()
             })
             .catch(error => {

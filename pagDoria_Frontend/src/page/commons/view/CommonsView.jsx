@@ -1,29 +1,50 @@
 import { useContext, useEffect, useState } from "react";
 import { useGetAllSheets } from "../../../services/useGetSheets/useGetSheets";
 import './CommonsView.css';
-import { Modal, Button } from '@material-ui/core';
+import { Modal, Button, TextField } from '@material-ui/core';
 import { motion } from "framer-motion"
 import { GlobalContext } from "../../../state/GlobalState";
+import { useEditServices } from "../../../services/useEditServices/useEditServices";
+import { Autocomplete } from "@mui/material";
+import { FOLDERS_ID_CERTIFICATE, FOLDERS_ID_QUOTATION } from "../../../utils/constanst";
+import { useGetPendingsView } from "../../../services/useGetPendingsView/useGetPendingsView";
 
 export const CommonsView = () => {
     const [modalObservations, setModalObservations] = useState(false);
     const {getAllSheets, searcher, setSearcher, getValue, subrolSearch, setSubrolSearch, error} = useGetAllSheets()
     const {user} = useContext(GlobalContext)
 
-    const subrol = user ? user.subrol : '';
     const rol = user ? user.rol : '';
 
+    const {getPendingsView, pendingsView} = useGetPendingsView()
+
     useEffect(() => {
-      getAllSheets()
+            if(user){
+                getAllSheets()
+                getPendingsView()
+            }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [user])
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            // 👇 Get input value
+            getAllSheets()
+        }
+    };
 
     const onModalObservations = () => {
         setModalObservations(!modalObservations)
     }
 
     const PDFOrdenCompra = getValue.PDFOrdenCompra
-    
+
+    const [ejecuciónServicio, setEjecuciónServicio] = useState('')
+
+    useEffect(() => {
+        setEjecuciónServicio(getValue.ejecuciónServicio)
+    },[getValue])
+
     const bodyModalObservations = (
         <motion.div
         className="container"
@@ -68,17 +89,22 @@ export const CommonsView = () => {
         </div>
         </motion.div>
     )
+
+    const {editServices} = useEditServices(()=>{}, ()=>{}, {ejecuciónServicio: ejecuciónServicio, searcher: searcher})
+
+    const urlCertificate = `https://drive.google.com/drive/u/0/folders/${FOLDERS_ID_CERTIFICATE[user ? user.subrol : '']}`
+    const urlQuotation = `https://drive.google.com/drive/u/0/folders/${FOLDERS_ID_QUOTATION[user ? user.subrol : '']}`
     
     return (
         <div className="square-content-service">
             <div className="search-message-choose-area">
-                <div className="search-service">
+                <div className="search-service" name="commonsView">
                     <button className="button-search-service" onClick={getAllSheets}>
                         <img src="/assets/view/plane.png" alt="plane-paper" />
                     </button>
-                    <input className="input-search-service" value={searcher} onChange={(e) => setSearcher(e.target.value)} type="text" placeholder="N° Solicitud" />
-                    {rol==='bosses' && <select className="search-sheet" value={subrolSearch} onChange={(e) => setSubrolSearch(e.target.value)}>
-                        <option hidden value>Subrol</option>
+                    <input className="input-search-service" value={searcher} onChange={(e) => setSearcher(e.target.value)} onKeyDown={handleKeyDown} type="text" placeholder="N° Solicitud" />
+                    {rol==='bosses' && <select className="search-sheet" value={subrolSearch} onChange={(e) => setSubrolSearch(e.target.value)} onKeyDown={handleKeyDown}>
+                        <option hidden value>Área</option>
                         <option value="mechanic">Mecanico</option>
                         <option value="windmill">Servicios/Molino</option>
                         <option value="electric">Electrico</option>
@@ -87,33 +113,54 @@ export const CommonsView = () => {
                         <option value="reliability">Confiabilidad/Dirección</option>
                     </select>}
                 </div>
+                <div className="carrousel-pendings" name="authorize">
+                        {pendingsView.length === 0 ? <div className="title-item-pending">Estás al día</div> : <div className="title-item-pending">Sin Facturar</div>}
+                        {pendingsView.map((pending) => (
+                            <>
+                                <button onMouseUp={(e) => setSearcher(e.target.value)} onClick={getAllSheets} value={pending} className="item-pending">
+                                    {pending}
+                                </button>
+                            </>
+                        ))}
+                    </div>
                 <div className="message-service-not-found">
                     {error && <h4>Servicio no encontrado</h4>}
                 </div>
                 <div className="message-choose-area">
-                    {(rol === 'bosses' & subrolSearch === '' || searcher === '') && <p>Complete los espacios</p>}
+                    {(searcher === '') && <p>Complete los espacios</p>}
                 </div>
             </div>
                 <div className="content-inf-main-service">
                     <div className="inf-main-service">
                         <div className="id-description">
+                            <div className="id-img">
                                 <h1>
-                                    Id: {getValue.id}
+                                    Id: {getValue.id} 
+                                    {getValue.estadoServicio === 'Aprobado' && <img src="/assets/icon/approval.png" name="approval" alt="approval" />}
+                                    {getValue.estadoServicio === 'Pendiente' && <img src="/assets/icon/approval.png" name="not-approval" alt="not approval" />}
+                                    {getValue.estadoServicio === 'Rechazado' && <img src="/assets/icon/decline.png" name="decline" alt="decline" />}
                                 </h1>
+                                <h6 name={getValue.estadoServicio}>{getValue.estadoServicio}</h6>
+                            </div>
                             <h5 className="description-services">Descripción: {getValue.DescripciónServicio}</h5>
+                            {/* eslint-disable-next-line */}
+                            {getValue.númeroActa ? <a href={urlCertificate} target="_blank" type="button"><h6 name="number-certificate-departure"><img src="/assets/getServices/exit.png" alt="" />Acta de Salida No. {getValue.númeroActa}</h6></a> : ''}
                         </div>
                         <div className="state-priority-billing">
                             <div className="card-service">
                                 <h2>Estado</h2>
-                                <h4 name={getValue.Estado}>{getValue.Estado}</h4>
+                                <h4 className="state-edit" name={getValue.Estado}>{getValue.Estado}</h4>
                             </div>
                             <div className="card-service">
                                 <h2>Prioridad</h2>
                                 <h4 name={getValue.Prioridad}>{getValue.Prioridad}</h4>
                             </div>
                             <div className="card-service">
-                                    <h4 name={getValue.FacturaciónServicio}>{getValue.FacturaciónServicio}<br />{getValue.FechaFacturación}</h4>
+                                    <h4 className="state-invoice" name={getValue.FacturaciónServicio}>{getValue.FacturaciónServicio}<br />{getValue.FechaFacturación}</h4>
                             </div>
+                        </div>
+                        <div className="departure-sticker">
+                            <h4 name={getValue.numeroActa}>{getValue.numeroActa}</h4>
                         </div>
                     </div>
                     <div className="hr-square-content-service-horizontal">
@@ -170,13 +217,60 @@ export const CommonsView = () => {
                             <hr />
                         </div>
                             <div className="quotation-valueBeforeVat-reliability">
+                                <div className="content-execution-service">
+                                    <div className="title-execution-service">
+                                        Ejecución<br/> del servicio
+                                    </div>
+                                    <div className="select-execution-service">
+                                        <Autocomplete
+                                            disablePortal
+                                            disableClearable
+                                            id="combo-box-demo"
+                                            className='execution-service'
+                                            value={ejecuciónServicio}
+                                            options={[
+                                                { value: 'Ejecutado En Su Totalidad', label: 'Ejecutado En Su Totalidad' },
+                                                { value: 'Ejecutado Parcialmente', label: 'Ejecutado Parcialmente' },
+                                                { value: 'No Ejecutado', label: 'No Ejecutado' },
+                                                { value: 'Por Ejecutar', label: 'Por Ejecutar' }
+                                            ]}
+                                            renderInput={(params) => <TextField {...params} />}
+                                            isOptionEqualToValue={(option, value) =>
+                                                value === undefined || value === "" || option.id === value.id
+                                            }
+                                            onBlur={() => editServices()}
+                                            onChange={(e, newValue) => {
+                                            // console.log('newValue ', newValue)
+                                            setEjecuciónServicio(newValue ? newValue.value : '')
+                                            }}
+                                        /> 
+                                    </div>
+                                    {ejecuciónServicio === 'Ejecutado En Su Totalidad' ?
+                                        <div className="img-execution-service">
+                                            <img src="/assets/icon/execution/done.gif" name="done" alt="done" />
+                                        </div> : ejecuciónServicio === 'Ejecutado Parcialmente' ?
+                                        <div className="img-execution-service">
+                                            <img src="/assets/icon/execution/partially.gif" name="partially" alt="partially" />
+                                        </div> : ejecuciónServicio === 'Por Ejecutar' ?
+                                        <div className="img-execution-service">
+                                            <img src="/assets/icon/execution/toExecute.gif" name="toExecute" alt="toExecute" />
+                                        </div> : ejecuciónServicio === "No Ejecutado" &&
+                                        <div className="img-execution-service">
+                                            <img src="/assets/icon/execution/kept.gif" name="kept" alt="kept" />
+                                        </div>
+                                    }
+                                </div>
+                                <div className="hr-horizontal-short-modal-coordinator">
+                                        <hr />
+                                </div>
                                 <div className="quotation-valueBeforeVat">
                                         <div className="content-quotation">
                                             <h2>Cotización</h2>
                                             
                                             <div className="inf-quotation">
                                                 <h3>{getValue.NombreCotización}</h3>
-                                                <a href='https://drive.google.com/drive/folders/1ZY2TlOU9Je4hJFoDoPLz_jvMvg3XnTGz' target="_blank" class="button">PDF</a>
+                                                {/* eslint-disable-next-line */}
+                                                <a href={urlQuotation} target="_blank" class="button">PDF</a> 
                                             </div>
                                         </div>
                                         <div className="content-valueBeforeVat">
@@ -230,7 +324,8 @@ export const CommonsView = () => {
                                             <h4>Orden de compra</h4>
                                             <div className="order-pdf-number">
                                                 <h2>{getValue.OrdenCompra}</h2>
-                                                {PDFOrdenCompra && <a href={PDFOrdenCompra} target="_blank" class="button">PDF</a>} 
+                                                {/* eslint-disable-next-line */}
+                                                {PDFOrdenCompra && <a href={PDFOrdenCompra} target="_blank" type="button">PDF</a>} 
                                             </div>
                                         </div>
                                     </div>

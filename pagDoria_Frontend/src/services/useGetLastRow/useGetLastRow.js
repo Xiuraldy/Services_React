@@ -17,9 +17,9 @@ export const useGetLastRow = (cb) => {
             fetch(url, requestOptions)
             .then(response => response.json())
             .then((result)=>{
-                cb()
-                {console.log('result -->', result.result)}
-                    setLastRow(result.result.replace(/['"]+/g, ''))
+                cb(result.result.replace(/['"]+/g, ''))
+                // {console.log('result -->', result.result)}
+                setLastRow(result.result.replace(/['"]+/g, ''))
             },(error)=>{
                 console.log(error)
         })

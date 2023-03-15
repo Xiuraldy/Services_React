@@ -10,9 +10,13 @@ import { usePostServices } from '../../../services/usePostServices/usePostServic
 import { GlobalContext } from '../../../state/GlobalState';
 import './CommonsGet.css';
 import { useUpploadFile } from '../../../services/useUpploadFile/useUpploadFile';
-import { useGetAllSheets } from '../../../services/useGetSheets/useGetSheets';
 import { useGetLastRow } from '../../../services/useGetLastRow/useGetLastRow';
 import { useSendEmail } from '../../../services/useSendEmail/useSendEmail';
+import { useGetProviders } from '../../../services/useGetProviders/useGetProviders';
+import { useEffect } from 'react';
+import { FOLDERS_ID, FOLDERS_ID_CERTIFICATE } from '../../../utils/constanst';
+import { useSendEmailCertificate } from '../../../services/useSendEmailCertificate/sendEmailCertificate';
+import { useGetDateTime } from '../../../services/useGetDateTime/useGetDateTime';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -21,12 +25,9 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export const CommonsGet = () => {
     const {user} = useContext(GlobalContext)
 
-    const {getValue} = useGetAllSheets()
-
     const {upploadFile} = useUpploadFile()
 
     const [open, setOpen] = React.useState(false);
-    const [openError, setOpenError] = React.useState(false);
 
     const [proovedor, setProovedor] = useState('')
     const [solicitudProveedor, setSolicitudProveedor] = useState('')
@@ -40,49 +41,58 @@ export const CommonsGet = () => {
     const [imputacionAutoriza, setImputacionAutoriza] = useState('')
     const [observacionesAutoriza, setObservacionesAutoriza] = useState('')
     const [file, setFile] = useState(null)
+    const [fileOuput, setFileOuput] = useState(null)
 
-    // const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const [modalGet, setModalGet] = useState(false) 
 
-    const completarHoraInicio = () => {
-        var fecha = new Date(); //Fecha actual
-        var mes = fecha.getMonth()+1; //obteniendo mes
-        var dia = fecha.getDate(); //obteniendo dia
-        var ano = fecha.getFullYear(); //obteniendo año
-        var hora = fecha.getHours(); //obteniendo hora
-        var minutos = fecha.getMinutes(); //obteniendo minuto
-        
-        const datetime = minTwoDigits(dia)+"/"+minTwoDigits(mes)+"/"+ano+" "+minTwoDigits(hora)+":"+minTwoDigits(minutos);
-        return datetime
-    }
+    const [isChecked, setIsChecked] = useState(false);
     
-    const minTwoDigits = (n) => {
-      return (n < 10 ? '0' : '') + n;
-    }
+    const {getDateTime} = useGetDateTime()
 
     const rol = user ? user.rol : '';
 
-    const {useLastRow, lastRow} = useGetLastRow(() => {
+    const fileOuputName = fileOuput ? fileOuput.name.split(".")[0] : ''
+ 
+    const {sendEmail} = useSendEmail({name: user ? user.name : '', email: user ? user.email: '', subrol: user ? user.subrol: '', fechaSolicitud: getDateTime(), proovedor: proovedor,
+    COP: COP, USD: USD, EUR: EUR, descripcionServicio: descripcionServicio, imputacionSolicita: imputacionSolicita, prioridad: prioridad, 
+    imputacionAutoriza: imputacionAutoriza, observacionesAutoriza: observacionesAutoriza, fechaAprobacion: prioridad!=='' ? getDateTime() : '', estadoServicio: prioridad!=='' ? 'Aprobado' : 'Pendiente', númeroActa: fileOuputName})
+    
+    const {sendEmailCertificate} = useSendEmailCertificate({name: user ? user.name : '', proovedor: proovedor, descripcionServicio: descripcionServicio, email: user ? user.email: '', subrol: user ? user.subrol: '', file: fileOuputName})
+    
+    const {useLastRow, lastRow} = useGetLastRow((value) => {
         setOpen(true)
-        // setLoading(false)
+        sendEmail(value)
+        sendEmailCertificate(value)
+        setLoading(false)
     })
 
-    const {postServices, error: errorPost, clearError} = usePostServices(useLastRow, {fechaSolicitud: completarHoraInicio(), proovedor, solicitudProveedor, nombreCotizacion, COP, USD, EUR, descripcionServicio, 
-    imputacionSolicita, solicita: user ? user.name : '', fechaAprobacion: prioridad!=='' ? completarHoraInicio() : '', coordinadorAutoriza: prioridad!=='' ? user.name : '', 
-    prioridad, imputacionAutoriza, observacionesAutoriza, file })
+    const {getProviders, providers} = useGetProviders()
 
-    const {sendEmail} = useSendEmail({user: user.name, email: user.name, lastRow: lastRow, proovedor: proovedor, subrol: user.subrol})
-
+    useEffect(() => {
+        getProviders()
+        // eslint-disable-next-line
+    }, [])
+    
+    const {postServices, error: errorPost, clearError, validatorPostService} = usePostServices(useLastRow, {fechaSolicitud: getDateTime(), proovedor: proovedor, 
+    solicitudProveedor: proovedor !== 'OTROS ' ? '' : solicitudProveedor, nombreCotizacion: nombreCotizacion, COP: COP, USD: USD, EUR: EUR, descripcionServicio: descripcionServicio, 
+    imputacionSolicita: imputacionSolicita, solicita: user ? user.name : '', fechaAprobacion: prioridad!=='' ? getDateTime() : '', coordinadorAutoriza: prioridad!=='' ? user.name : '', 
+    prioridad: prioridad, imputacionAutoriza: imputacionAutoriza, observacionesAutoriza: observacionesAutoriza, estadoServicio: prioridad!=='' ? 'Aprobado' : 'Pendiente', ejecuciónServicio: 'Por Ejecutar', númeroActa: fileOuputName, file, fileOuput, isChecked: isChecked.toString() })
+        
     const onModalGet = () => {
         setModalGet(!modalGet)
     }
 
     const handleClick = () => {
-        // setLoading(true)
-        upploadFile(file)
+        if(!validatorPostService()){
+            setModalGet(false)
+            return
+        }
+        setLoading(true)
+        upploadFile(file, FOLDERS_ID[user.subrol])
+        upploadFile(fileOuput, FOLDERS_ID_CERTIFICATE[user.subrol])
         postServices()
-        sendEmail()
         setModalGet(false)
     };
     
@@ -93,6 +103,10 @@ export const CommonsGet = () => {
     
     setOpen(false);
     clearError()
+    };
+    
+    const handleOnChange = () => {
+        setIsChecked(!isChecked);
     };
 
     return (
@@ -109,40 +123,24 @@ export const CommonsGet = () => {
                                                 disablePortal
                                                 id="combo-box-demo"
                                                 value={proovedor}
+                                                options={providers.map((providerItem) => {
+                                                    return {value: providerItem.proveedores, label: providerItem.proveedores}
+                                                })}
+                                                renderInput={(params) => <TextField {...params} label="Nombre" />}
+                                                isOptionEqualToValue={(option, value) =>
+                                                    value === undefined || value === "" || option.id === value.id
+                                                }
                                                 onChange={(e, newValue) => {
                                                     setProovedor(newValue ? newValue.value : '')
                                                 }}
-                                                options={[
-                                                    { value: 'FERREINGENIERIA J M LTDA', label: 'FERREINGENIERIA J M LTDA'},
-                                                    { value: 'ROPIM SAS', label: 'ROPIM SAS'},
-                                                    { value: '1CREATIVOS SAS', label: '1CREATIVOS SAS'},
-                                                    { value: 'EQUINEHY LTDA', label: 'EQUINEHY LTDA'},
-                                                    { value: 'FYR INGENIEROS LTDA', label: 'FYR INGENIEROS LTDA'},
-                                                    { value: 'INGENIERIA ESPECIALIZADA S.A', label: 'INGENIERIA ESPECIALIZADA S.A'},
-                                                    { value: 'AUTOMATIZACION DE SISTEMAS S.A.S', label: 'AUTOMATIZACION DE SISTEMAS S.A.S'},
-                                                    { value: 'KAESER COMPRESORES DE COLOMBIA', label: 'KAESER COMPRESORES DE COLOMBIA'},
-                                                    { value: 'ACABADOS Y PINTURAS RODRIGUEZ S.A.S.', label: 'ACABADOS Y PINTURAS RODRIGUEZ S.A.S.'},
-                                                    { value: 'HCM PINTURAS DE COLOMBIA SAS', label: 'HCM PINTURAS DE COLOMBIA SAS'},
-                                                    { value: 'GDEM SAS', label: 'GDEM SAS'},
-                                                    { value: 'WET CHEMICAL COLOMBIA S.A.S', label: 'WET CHEMICAL COLOMBIA S.A.S'},
-                                                    { value: 'OSHO INGENIERIA LTDA', label: 'OSHO INGENIERIA LTDA'},
-                                                    { value: 'ELECTROSISTEL JB S.A.S.', label: 'ELECTROSISTEL JB S.A.S.'},
-                                                    { value: 'BUHLER A.G. SUIZA', label: 'BUHLER A.G. SUIZA'},
-                                                    { value: 'BUHLER AG SUCURSAL COLOMBIA', label: 'BUHLER AG SUCURSAL COLOMBIA'},
-                                                    { value: 'BUHLER S.A.S', label: 'BUHLER S.A.S'},
-                                                    { value: 'AIT SOLUCIONES AUTOMATICAS S.A.S.', label: 'AIT SOLUCIONES AUTOMATICAS S.A.S.'},
-                                                    { value: 'MEGAMONTAJES INDUSTRIALES SAS', label: 'MEGAMONTAJES INDUSTRIALES SAS'},
-                                                    { value: 'BUHLER S.A.S', label: 'BUHLER S.A.S'},
-                                                ]}
-                                                renderInput={(params) => <TextField {...params} label="Nombre" />}
                                             />
                                         </div>
                                         {/* {console.log('proovedor -->', proovedor)} */}
                                         <div className="other">
-                                            {proovedor === 'Otro' ? 
+                                            {proovedor === 'OTROS ' ? 
                                             <TextField 
                                                 id="outlined-basic" 
-                                                label="Otro" 
+                                                label="Nuevo Proveedor" 
                                                 variant="outlined" 
                                                 onChange={(e) => setSolicitudProveedor(e.target.value)}
                                                 value={solicitudProveedor}
@@ -192,6 +190,8 @@ export const CommonsGet = () => {
                                             label="Valor" 
                                             variant="outlined"
                                             onChange={(e) => setCOP(e.target.value)}
+                                            type="text"
+
                                         />
                                     </div>
                                     <div className="money-get-services">
@@ -203,6 +203,7 @@ export const CommonsGet = () => {
                                             variant="outlined" 
                                             onChange={(e) => setUSD(e.target.value)}
                                             value={USD} 
+                                            type="text"
                                         />
                                     </div>
                                     <div className="money-get-services">
@@ -214,11 +215,12 @@ export const CommonsGet = () => {
                                             variant="outlined" 
                                             onChange={(e) => setEUR(e.target.value)}
                                             value={EUR} 
+                                            type="text"
                                         />
                                     </div>
                                 </div>
                                 <div className="part-form-get-services-everyone" name="imputation-soli">
-                                    <h2>Imputación Solicita<img src="/assets/getServices/imputation.png" alt="provider" /></h2>
+                                    <h2>Imputación Solicitud<img src="/assets/getServices/imputation.png" alt="provider" /></h2>
                                     <div className="select-other">
                                         <div className="select">
                                             <TextField 
@@ -237,20 +239,22 @@ export const CommonsGet = () => {
                                         <div className="part-form-get-services-authorize">
                                             <h2>Prioridad<img src="/assets/getServices/priority.png" alt="provider" /></h2>
                                             <Autocomplete
-                                                        disablePortal
-                                                        id="combo-box-demo"
-                                                        value={prioridad}
-                                                        onChange={(e, newValue) => {
-                                                            console.log('newValue ', newValue)
-                                                            setPrioridad(newValue ? newValue.value : '')
-                                                        }}
-                                                        options={[
-                                                            { value: 'BAJA', label: 'BAJA' },
-                                                            { value: 'MEDIA', label: 'MEDIA' },
-                                                            { value: 'ALTA', label: 'ALTA' }
-                                                        ]}
-                                                        renderInput={(params) => <TextField {...params} label="Estado" />}
-                                                    />
+                                                disablePortal
+                                                id="combo-box-demo"
+                                                value={prioridad}
+                                                options={[
+                                                    { value: 'BAJA', label: 'BAJA' },
+                                                    { value: 'MEDIA', label: 'MEDIA' },
+                                                    { value: 'ALTA', label: 'ALTA' }
+                                                ]}
+                                                renderInput={(params) => <TextField {...params} label="Estado" />}
+                                                isOptionEqualToValue={(option, value) =>
+                                                    value === undefined || value === "" || option.id === value.id
+                                                }
+                                                onChange={(e, newValue) => {
+                                                    setPrioridad(newValue ? newValue.value : '')
+                                                }}
+                                            />
                                         </div>
                                         <div className="part-form-get-services-authorize" name="observation">
                                             <h2>Observación<img src="/assets/getServices/observation.png" alt="provider" /></h2>
@@ -263,7 +267,7 @@ export const CommonsGet = () => {
                                             />
                                         </div>
                                         <div className="part-form-get-services-authorize">
-                                            <h2>Imputación Autoriza<img src="/assets/getServices/imputation.png" alt="provider" /></h2>
+                                            <h2>Imputación Autorizado<img src="/assets/getServices/imputation.png" alt="provider" /></h2>
                                             <div className="select-other">
                                                 <div className="select">
                                                     <TextField 
@@ -279,6 +283,27 @@ export const CommonsGet = () => {
                                         </div>
                                     </>
                                 )}
+                                <div className="part-form-get-services-documentExit" name={isChecked.toString()}>
+                                    <h2>Salida del Componente<img src="/assets/getServices/exit.png" alt="provider" /></h2>
+                                    <h4>¿El Equipo/Componente será llevado por el proveedor?
+                                        <input
+                                        type="checkbox"
+                                        className='checkbox-exit'
+                                        value="Paneer"
+                                        checked={isChecked}
+                                        onChange={handleOnChange}
+                                        />
+                                    </h4>
+                                </div>
+                                <div className="part-form-get-services-documentExitPDF" name={isChecked.toString()}>
+                                    <h2>Acta de Entrega de Componente<img src="/assets/getServices/documentExit.png" alt="documentExit" /></h2>
+                                    <input 
+                                        type="file" 
+                                        accept="application/pdf" 
+                                        id="customFile" 
+                                        onChange={(e) => setFileOuput(e.target.files[0])} 
+                                    />
+                                </div>
                                 {/* <div className="part-form-get-services-reliability">
                                     <h2>Solped<img src="/assets/getServices/solped.png" alt="provider" /></h2>
                                     <TextField 
@@ -313,7 +338,6 @@ export const CommonsGet = () => {
                                     <Autocomplete
                                         disablePortal
                                         id="combo-box-demo"
-                                        onChange={(e) => setEstado(e.target.value)}
                                         options={[
                                             { value: 'Sin liberar', label: 'Sin liberar'},
                                             { value: 'CONTRATO MARCO', label: 'CONTRATO MARCO'},
@@ -321,6 +345,10 @@ export const CommonsGet = () => {
                                         ]}
                                         // value={estado}
                                         renderInput={(params) => <TextField {...params} label="Nivel"  value="states" />}
+                                        isOptionEqualToValue={(option, value) =>
+                                                    value === undefined || value === "" || option.id === value.id
+                                        }
+                                        onChange={(e) => setEstado(e.target.value)}
                                     />
                                 </div>
                                 <div className="part-form-get-services-reliability">
@@ -328,7 +356,6 @@ export const CommonsGet = () => {
                                     <Autocomplete
                                         disablePortal
                                         id="combo-box-demo"
-                                        onChange={(e) => setFacturacionServicio(e.target.value)}
                                         options={[
                                             { value: 'Sin facturar', label: 'Sin facturar'},
                                             { value: 'Parcial', label: 'Parcial'},
@@ -336,12 +363,16 @@ export const CommonsGet = () => {
                                         ]}
                                         // value={facturacionServicio}
                                         renderInput={(params) => <TextField {...params} label="Estado"  value="invoce" />}
+                                        isOptionEqualToValue={(option, value) =>
+                                            value === undefined || value === "" || option.id === value.id
+                                        }
+                                        onChange={(e) => setFacturacionServicio(e.target.value)}
                                     />
                                 </div> */}
                                 </div>
                                 <div className="area-send">
                                 {/* {console.log('subrolPost ->', subrolPost)} */}
-                                <button className='button-add' onClick={onModalGet}>ENVIAR</button>
+                                <button className='button-add' onClick={onModalGet} disabled={loading}>ENVIAR</button>
                                 <Modal open={modalGet} close={onModalGet}>
                                     <motion.div
                                         className="container"
@@ -370,16 +401,16 @@ export const CommonsGet = () => {
             <div className="css-cpgvjg-MuiSnackbar-root">
                 <Stack spacing={2} sx={{ width: '100%' }}>
                     <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                            <Alert onClose={handleClose} severity="success" sx={{ width: '100%', marginLeft: '740px' }}>
+                            <Alert onClose={handleClose} severity="success" sx={{ width: '100%', marginLeft: '405px', marginBottom: '10px' }}>
                                 Servicio Realizado Con Exito - CODIGO: {lastRow}
                             </Alert>
                     </Snackbar>
                 </Stack>
                 
 
-                <Stack spacing={2} sx={{ width: '100%', marginLeft: '50px' }}>
+                <Stack spacing={2} sx={{ width: '100%' }}>
                     <Snackbar open={!!errorPost} autoHideDuration={5000} onClose={handleClose}>
-                            <Alert onClose={handleClose} severity="error" sx={{ width: '100%', marginLeft: '740px' }}>
+                            <Alert onClose={handleClose} severity="error" sx={{ width: '100%', marginLeft: '405px', marginBottom: '10px' }}>
                                 <p>{errorPost}</p>
                             </Alert>
                     </Snackbar>

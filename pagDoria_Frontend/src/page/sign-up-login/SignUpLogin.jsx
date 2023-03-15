@@ -28,6 +28,13 @@ export const SignUpLogin = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            // 👇 Get input value
+            sendRequestLogin()
+        }
+    };
+
     const validatorLogin = () => {
         const regexEmail =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if(email === '' || password === ''){
@@ -174,7 +181,7 @@ export const SignUpLogin = () => {
                 initial="hidden"
                 animate="visible"
             >
-            <motion.li key={container} className="item" variants={item} />
+            <motion.li key={container} className="item" initial="hidden" variants={item} />
             <main className={isLogin ? 'sign-in-mode' : 'sign-up-mode'}>
                 <div className="box">
                     <div className="inner-box">
@@ -202,7 +209,7 @@ export const SignUpLogin = () => {
                                             onChange={(e) => setEmail(e.target.value)} 
                                             autoComplete="off"
                                             value={email}
-                                            
+                                            onKeyDown={handleKeyDown}
                                             
                                         />
                                         <label>Email</label>
@@ -215,7 +222,7 @@ export const SignUpLogin = () => {
                                             autoComplete="off"
                                             name="password" 
                                             maxLength={20}
-                                            
+                                            onKeyDown={handleKeyDown}
                                             
                                         />
                                         <label>Clave</label>
@@ -257,7 +264,7 @@ export const SignUpLogin = () => {
                                                 >
                                                     <option hidden value>Rol</option>
                                                     <option value="tech">Técnico</option>
-                                                    <option value="bosses">Jefe</option>
+                                                    {/* <option value="bosses">Jefe</option> */}
                                                 </select>
                                             </div>
                                                 <div className="select-wrap">

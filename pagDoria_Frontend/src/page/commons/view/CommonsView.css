@@ -5,8 +5,12 @@
     --green-light: #BFEFBE;
     --blue-dark: #2F3B70;
     --blue-light: #BEE9EF;
+    --purple-dark: #612f70;
+    --purple-light: #e1beef;
     --yellow-dark: #AD8200;
     --yellow-light: #efeebe;
+    --grey-dark: #302f2f;
+    --grey-light: #6e6e6e;
 }
 
 .square-content-service {
@@ -82,7 +86,7 @@
     flex: 1;
 }
 
-.search-service {
+.search-service[name="commonsView"] {
     width: 1000px;
 }
 
@@ -115,9 +119,9 @@
 
 .inf-main-service {
     display: flex;
-    margin-top: 50px;
-    margin-bottom: 40px;
-    justify-content: center;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -165,17 +169,66 @@
     background-color: var(--red-light);
 }
 
-.id-description {
+/* .id-description {
     margin-right: 80px;
-}
+} */
 
 .id-description h1 {
     color: var(--main-color-dark);
     font-size: 25pt;
 }
 
+.id-description h6 {
+    font-size: 10pt;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.id-description h6[name="Aprobado"] {
+    color: var(--green-light);
+    background-color: var(--green-dark);
+}
+
+.id-description h6[name="Pendiente"] {
+    color: var(--grey-light);
+    background-color: var(--grey-dark);
+}
+
+.id-description h6[name="Rechazado"] {
+    color: var(--red-light);
+    background-color: var(--red-dark);
+}
+
+.id-img img {
+    width: 30px;
+}
+
+.id-img img[name="not-approval"] {
+    filter: grayscale(100%);
+}
+
+.id-img {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 160px;
+}
+
+.id-description h6[name="number-certificate-departure"] {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 262px;
+    color: var(--purple-light);
+    background-color: var(--purple-dark);
+}
+
+.id-description img {
+    width: 30px;
+}
+
 .description-services {
-    width: 350px;
+    width: 334px;
 }
 
 .hr-square-content-service-horizontal hr {
@@ -191,11 +244,13 @@
 }
 
 .hr-square-content-service-vertical hr {
-    border: 1px dashed rgba(128, 128, 128, 0.425); height: 90%; margin-top: 15px;
+    border: 1px dashed rgba(128, 128, 128, 0.425); height: 95%; margin-top: 15px;
 }
 
 .people-involved {
-    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-right: 40px;
 }
 
@@ -241,7 +296,7 @@
     color: var(--yellow-dark);
 }
 
-.main-inf-provider h2, .main-inf-request h2, .main-inf-authorize h2, .date-order h2, .solped h2, .order h2 {
+.main-inf-provider h2, .main-inf-request h2, .input-editPosts, .main-inf-authorize h2, .date-order h2, .solped h2, .order h2, .input-editPosts[name="provideer-input-edit"] {
     font-size: medium;
     color: aliceblue;
     padding: 10px;
@@ -289,7 +344,7 @@
 }
 
 .observations-reliability img:hover {
-    background-color: rgba(128, 128, 128, 0.555);
+    background-color: rgba(128, 128, 128);
     transition: .7s;
 }
 
@@ -327,7 +382,7 @@
 }
 
 .reliability {
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 10px;
 }
 
@@ -376,6 +431,7 @@
 .inf-bottom-service {
     display: flex;
     justify-content: space-around;
+    margin-top: 20px;
 }
 
 .quotation-valueBeforeVat-reliability {
@@ -445,7 +501,7 @@
 }
 
 .order-pdf-number {
-    align-items: center;
+    align-items: stretch;
 }
 
 .order-pdf-number a {
@@ -456,6 +512,8 @@
 .money-valueBeforeVat {
     display: flex;
     font-size: large;
+    flex-direction: column;
+    align-items: center;
 }
 
 .money-valueBeforeVat h4{
@@ -505,4 +563,38 @@
 
 .coordinator-observation-name h2, .reliability-observation-name h2 {
     -webkit-text-stroke: 1px black;
+}
+
+.content-execution-service {
+    background-color: transparent;
+    display: flex;
+    padding: 1px;
+    margin: 2px;
+    margin-bottom: 10px;
+    /* border-radius: 5px; */
+    align-items: center;
+    justify-content: space-evenly;
+    border: none;
+}
+
+.title-execution-service {
+    line-height: 18px;
+    color: black;
+    font-weight: 800;
+}
+
+.execution-service {
+    width: 300px;
+}
+
+.img-execution-service img {
+    width: 35px;
+    display: flex;
+}
+
+@media screen and (max-width: 430px) {
+    .square-content-service {
+        display: flex;
+        align-items: flex-start;
+    }
 }
